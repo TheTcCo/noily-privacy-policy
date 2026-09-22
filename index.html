@@ -1,331 +1,3066 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Noily - Privacy Policy</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      line-height: 1.65;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px 24px;
-      color: #222;
-      background: #fff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#D98C82;
+    --wine:#5C1A2E;
+    --cream:#F7E9E1;
+    --white:#FFFFFF;
+    --blush:#F2C9C2;
+    --backdrop:#1C1C1C;
+  }
 
-```
-h1 {
-  font-size: 34px;
-  margin-bottom: 8px;
-}
+  *{ margin:0; padding:0; box-sizing:border-box; }
 
-h2 {
-  font-size: 22px;
-  margin-top: 36px;
-}
+  .app-frame,
+  .app-frame *{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    user-select:none;
+    -webkit-touch-callout:none;
+    -webkit-tap-highlight-color:transparent;
+  }
 
-h3 {
-  font-size: 18px;
-  margin-top: 24px;
-}
+  .app-frame img{
+    -webkit-user-drag:none;
+    user-drag:none;
+    pointer-events:none;
+  }
 
-p, li {
-  font-size: 16px;
-}
+  html,body{
+    height:100%;
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+    color:var(--wine);
+    background:var(--backdrop);
+  }
 
-.updated {
-  color: #666;
-  margin-bottom: 32px;
-}
+  body{
+    display:flex;
+    justify-content:center;
+  }
 
-a {
-  color: #555;
-}
-```
+  .app-frame{
+    position:relative;
+    width:100%;
+    max-width:430px;
+    height:100%;
+    overflow:hidden;
+  }
 
-  </style>
+  h1,h2,h3{
+    font-family:'Playfair Display',serif;
+    font-weight:600;
+  }
+
+  .scene{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:32px 24px;
+    opacity:0;
+    visibility:hidden;
+    transform:scale(0.96);
+    transition:opacity 0.7s ease, transform 0.7s ease, visibility 0.7s;
+    overflow-y:auto;
+  }
+
+  .scene.active{
+    opacity:1;
+    visibility:visible;
+    transform:scale(1);
+  }
+
+  /* ---------- Scene 1: card ---------- */
+  #scene-card{ background:var(--rose); cursor:pointer; }
+
+  .carta-img{
+    width:240px;
+    height:auto;
+    filter:drop-shadow(0 20px 40px rgba(92,26,46,0.35));
+    transition:transform 0.4s ease;
+  }
+
+  #scene-card:active .carta-img{ transform:scale(0.96); }
+
+  .tap-hint{
+    margin-top:26px;
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--wine);
+    opacity:0.7;
+  }
+
+  /* ---------- Scene 2 & 3: messages ---------- */
+  #scene-message1{ background:var(--cream); padding:24px 0; }
+  #scene-message2{ background:var(--rose); }
+
+  .letter-page{
+    position:relative;
+    width:100%;
+    max-width:430px;
+    margin:0 auto;
+  }
+
+  .letter-bg{
+    width:100%;
+    display:block;
+  }
+
+  .letter-content{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:16% 18% 22%;
+    text-align:center;
+  }
+
+  .flowers-img{
+    width:215px;
+    height:auto;
+    margin-bottom:12px;
+  }
+
+  .seed-icon{
+    width:60px;
+    height:60px;
+    overflow:hidden;
+    position:relative;
+    margin-bottom:20px;
+  }
+
+  .seed-icon img{
+    position:absolute;
+    top:0;
+    left:0;
+    width:355px;
+    height:355px;
+    transform:translate(-152px,-140px);
+  }
+
+  .message{
+    max-width:340px;
+    font-size:19px;
+    line-height:1.6;
+    font-weight:400;
+  }
+
+  .letter-content .message{
+    font-size:14px;
+    line-height:1.5;
+  }
+
+  #scene-message2 .message{ color:var(--white); }
+
+  .next-btn{
+    margin-top:36px;
+    background:none;
+    border:1.5px solid var(--wine);
+    color:var(--wine);
+    padding:12px 30px;
+    border-radius:30px;
+    font-family:'Poppins',sans-serif;
+    font-size:13px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background 0.3s ease, color 0.3s ease;
+  }
+
+  .next-btn:hover{
+    background:var(--wine);
+    color:var(--cream);
+  }
+
+  #scene-message2 .next-btn{
+    border-color:var(--white);
+    color:var(--white);
+  }
+
+  #scene-message2 .next-btn:hover{
+    background:var(--white);
+    color:var(--wine);
+  }
+
+  /* ---------- Scene 4: cozy site ---------- */
+  #scene-site{
+    justify-content:flex-start;
+    padding:0;
+    background:var(--rose);
+    overflow:hidden;
+  }
+
+  .navbar{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:9px 24px;
+    background:rgba(255,255,255,0.08);
+  }
+
+  .coin-display{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  .coin-icon{
+    width:50px;
+    height:50px;
+    object-fit:contain;
+  }
+
+  .coin-count{
+    font-family:'Poppins',sans-serif;
+    font-size:22px;
+    font-weight:700;
+    color:var(--white);
+    text-shadow:0 1px 3px rgba(27,10,15,0.6);
+  }
+
+  .menu-btn{
+    background:none;
+    border:none;
+    padding:8px;
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+  }
+
+  .menu-btn span{
+    width:22px;
+    height:2px;
+    background:var(--white);
+    display:block;
+    border-radius:2px;
+  }
+
+  .action-row{
+    position:absolute;
+    top:80px;
+    left:0;
+    right:0;
+    padding:0 20px;
+    display:flex;
+    justify-content:space-between;
+    z-index:3;
+  }
+
+  .collect-row{
+    position:absolute;
+    top:140px;
+    left:0;
+    right:0;
+    height:56px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:6;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:opacity 0.4s ease;
+  }
+
+  #scene-site.stage-fase3grow .collect-row,
+  #scene-site.plant-grown.stage-fruit .collect-row,
+  #scene-site.plant-grown.stage-fruitcollect .collect-row,
+  #scene-site.plant-grown.stage-sell .collect-row,
+  #scene-site.plant-grown.stage-sold .collect-row,
+  #scene-site.plant-grown.stage-hierbadorinfo .collect-row,
+  #scene-site.plant-grown.stage-closing1 .collect-row,
+  #scene-site.plant-grown.stage-closing2 .collect-row,
+  #scene-site.plant-grown.stage-done .collect-row{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
+
+  .collect-btn{
+    background:var(--wine);
+    color:var(--white);
+    border:none;
+    padding:9px 22px;
+    border-radius:30px;
+    font-family:'Poppins',sans-serif;
+    font-size:12px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    cursor:pointer;
+    box-shadow:0 8px 18px rgba(27,10,15,0.35);
+  }
+
+  .collect-btn:hover{
+    background:var(--wine);
+    opacity:0.9;
+  }
+
+  .action-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2px;
+  }
+
+  .action-label{
+    font-size:12px;
+    letter-spacing:0.5px;
+    color:var(--white);
+    text-shadow:0 1px 3px rgba(27,10,15,0.5);
+  }
+
+  .icon-clip{
+    width:55px;
+    height:55px;
+    overflow:hidden;
+    position:relative;
+  }
+
+  .icon-clip img{
+    position:absolute;
+    top:0;
+    left:0;
+  }
+
+  .icon-vender img{
+    width:186px;
+    height:186px;
+    transform:translate(-69px,-67px);
+  }
+
+  .icon-trash img{
+    width:200px;
+    height:200px;
+    transform:translate(-76px,-73px);
+  }
+
+  .hero{
+    flex:1;
+    min-height:100px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:40px;
+  }
+
+  .earth-wrap{
+    position:relative;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    transform:translateY(26%);
+  }
+
+  .hero-earth{
+    position:relative;
+    z-index:1;
+    width:96%;
+    max-width:380px;
+  }
+
+  .earth-outline{
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:96%;
+    max-width:380px;
+    z-index:2;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.4s ease;
+  }
+
+  #scene-site.hierbador-active .earth-outline{
+    opacity:1;
+  }
+
+  .water-splash{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:130px;
+    height:130px;
+    transform:translate(-50%,-30%);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+    z-index:6;
+  }
+
+  .water-splash.show{
+    opacity:1;
+  }
+
+  #herbicide-splash{
+    width:190px;
+    height:190px;
+  }
+
+  .water-splash img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+  }
+
+  .weed-sprite,
+  .weed-item{
+    position:absolute;
+    top:47%;
+    left:50%;
+    width:70px;
+    height:70px;
+    transform:translate(-50%,-50%);
+    overflow:hidden;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+    z-index:8;
+  }
+
+  .weed-sprite{
+    top:54%;
+  }
+
+  .weed-item{
+    left:30%;
+  }
+
+  .weed-sprite img{
+    position:absolute;
+    top:0;
+    left:0;
+    width:233px;
+    height:233px;
+    transform:translate(-80px,-169px);
+    pointer-events:none;
+  }
+
+  #scene-site.stage-weed .weed-sprite,
+  #scene-site.wsub-growing .weed-sprite{
+    opacity:1;
+  }
+
+  #scene-site.stage-collect .weed-item,
+  #scene-site.wsub-collect .weed-item{
+    opacity:1;
+    pointer-events:auto;
+    cursor:grab;
+    touch-action:none;
+  }
+
+  .weed-item img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    pointer-events:none;
+  }
+
+  .fase1-sprite{
+    position:absolute;
+    top:52%;
+    left:50%;
+    width:38px;
+    height:38px;
+    transform:translate(-50%,-50%);
+    overflow:hidden;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.6s ease;
+    z-index:4;
+  }
+
+  .fase1-sprite img{
+    position:absolute;
+    top:0;
+    left:0;
+    width:388px;
+    height:388px;
+    transform:translate(-166px,-352px);
+    pointer-events:none;
+  }
+
+  #scene-site.stage-fase1grow .fase1-sprite,
+  #scene-site.stage-fruit:not(.plant-grown) .fase1-sprite,
+  #scene-site.stage-fruitcollect:not(.plant-grown) .fase1-sprite,
+  #scene-site.stage-sell:not(.plant-grown) .fase1-sprite,
+  #scene-site.stage-sold:not(.plant-grown) .fase1-sprite,
+  #scene-site.stage-hierbadorinfo:not(.plant-grown) .fase1-sprite,
+  #scene-site.stage-closing1:not(.plant-grown) .fase1-sprite,
+  #scene-site.stage-closing2:not(.plant-grown) .fase1-sprite,
+  #scene-site.stage-done:not(.plant-grown) .fase1-sprite{
+    opacity:1;
+  }
+
+  .fase2-sprite{
+    position:absolute;
+    left:50%;
+    bottom:36%;
+    width:90px;
+    height:110px;
+    transform:translateX(-50%);
+    overflow:hidden;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.6s ease;
+    z-index:4;
+  }
+
+  .fase2-sprite img{
+    position:absolute;
+    pointer-events:none;
+  }
+
+  .fase2-girasol{
+    top:0;
+    left:0;
+    width:272px;
+    height:272px;
+    transform:translate(-93px,-161px);
+  }
+
+  .fase2-cactus{
+    top:0;
+    left:0;
+    width:322px;
+    height:322px;
+    transform:translate(-115px,-231px);
+  }
+
+  .fase2-poliamarilla{
+    top:0;
+    left:0;
+    width:234px;
+    height:234px;
+    transform:translate(-68px,-122px);
+  }
+
+  .fase2-chiquitina{
+    top:0;
+    left:0;
+    width:360px;
+    height:360px;
+    transform:translate(-128px,-246px);
+  }
+
+  .fase2-callampin{
+    top:0;
+    left:0;
+    width:288px;
+    height:288px;
+    transform:translate(-94px,-187px);
+  }
+
+  .fase2-rosadorada{
+    top:0;
+    left:0;
+    width:292px;
+    height:292px;
+    transform:translate(-95px,-188px);
+  }
+
+  #scene-site.stage-fase2grow .fase2-sprite{
+    opacity:1;
+  }
+
+  .fase3-sprite{
+    position:absolute;
+    left:50%;
+    bottom:36%;
+    width:224px;
+    height:290px;
+    transform:translateX(-50%);
+    overflow:hidden;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.6s ease;
+    z-index:4;
+  }
+
+  .fase3-sprite img{
+    position:absolute;
+    pointer-events:none;
+  }
+
+  .fase3-girasol{
+    top:0;
+    left:0;
+    width:401px;
+    height:401px;
+    transform:translate(-80px,-109px);
+  }
+
+  .fase3-cactus{
+    top:0;
+    left:0;
+    width:365px;
+    height:365px;
+    transform:translate(-69px,-90px);
+  }
+
+  .fase3-poliamarilla{
+    top:0;
+    left:0;
+    width:354px;
+    height:354px;
+    transform:translate(-63px,-59px);
+  }
+
+  .fase3-chiquitina{
+    top:0;
+    left:0;
+    width:361px;
+    height:361px;
+    transform:translate(-55px,-65px);
+  }
+
+  .fase3-callampin{
+    top:0;
+    left:0;
+    width:288px;
+    height:288px;
+    transform:translate(-32px,5px);
+  }
+
+  .fase3-rosadorada{
+    top:0;
+    left:0;
+    width:407px;
+    height:407px;
+    transform:translate(-76px,-110px);
+  }
+
+  #scene-site.stage-fase3grow .fase3-sprite,
+  #scene-site.plant-grown.stage-fruit .fase3-sprite,
+  #scene-site.plant-grown.stage-fruitcollect .fase3-sprite,
+  #scene-site.plant-grown.stage-sell .fase3-sprite,
+  #scene-site.plant-grown.stage-sold .fase3-sprite,
+  #scene-site.plant-grown.stage-hierbadorinfo .fase3-sprite,
+  #scene-site.plant-grown.stage-closing1 .fase3-sprite,
+  #scene-site.plant-grown.stage-closing2 .fase3-sprite,
+  #scene-site.plant-grown.stage-done .fase3-sprite{
+    opacity:1;
+  }
+
+  .fruit-sprite{
+    position:absolute;
+    top:47%;
+    left:50%;
+    width:34px;
+    height:34px;
+    transform:translate(-50%,-50%);
+    overflow:hidden;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+    z-index:8;
+  }
+
+  .fruit-sprite img{
+    position:absolute;
+    top:0;
+    left:0;
+    width:52px;
+    height:52px;
+    transform:translate(-9px,-10px);
+    pointer-events:none;
+  }
+
+  #scene-site.stage-fruit .fruit-sprite,
+  #scene-site.fsub-ready .fruit-sprite{
+    opacity:1;
+  }
+
+  .fruit-item{
+    position:absolute;
+    top:47%;
+    left:70%;
+    width:70px;
+    height:70px;
+    transform:translate(-50%,-50%);
+    overflow:hidden;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+    z-index:8;
+  }
+
+  #scene-site.stage-fruitcollect .fruit-item,
+  #scene-site.fsub-collect .fruit-item{
+    opacity:1;
+    pointer-events:auto;
+    cursor:grab;
+    touch-action:none;
+  }
+
+  .fruit-item img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    pointer-events:none;
+  }
+
+  .water-bar-wrap{
+    width:70%;
+    max-width:220px;
+    opacity:0;
+    transition:opacity 0.4s ease;
+  }
+
+  #scene-site.stage-water .water-bar-wrap,
+  #scene-site.stage-weed .water-bar-wrap,
+  #scene-site.stage-collect .water-bar-wrap,
+  #scene-site.stage-dispose .water-bar-wrap,
+  #scene-site.stage-nutrient .water-bar-wrap,
+  #scene-site.stage-fase0grow .water-bar-wrap,
+  #scene-site.stage-fase1grow .water-bar-wrap,
+  #scene-site.stage-fase2grow .water-bar-wrap,
+  #scene-site.stage-fase3grow .water-bar-wrap,
+  #scene-site.stage-fruit .water-bar-wrap,
+  #scene-site.stage-fruitcollect .water-bar-wrap,
+  #scene-site.stage-sell .water-bar-wrap,
+  #scene-site.stage-sold .water-bar-wrap,
+  #scene-site.stage-hierbadorinfo .water-bar-wrap,
+  #scene-site.stage-closing1 .water-bar-wrap,
+  #scene-site.stage-closing2 .water-bar-wrap,
+  #scene-site.stage-done .water-bar-wrap{
+    opacity:1;
+  }
+
+  .water-bar-track{
+    width:100%;
+    height:14px;
+    background:rgba(180,225,240,0.4);
+    border-radius:10px;
+    overflow:hidden;
+    border:1.5px solid rgba(180,225,240,0.7);
+  }
+
+  .water-bar-fill{
+    height:100%;
+    width:0%;
+    background:#3E9BC4;
+    border-radius:10px;
+    transition:width 1.2s ease;
+  }
+
+  /* ---------- Tutorial stages ---------- */
+  #scene-site.stage-seed .navbar,
+  #scene-site.stage-water .navbar,
+  #scene-site.stage-weed .navbar,
+  #scene-site.stage-collect .navbar,
+  #scene-site.stage-dispose .navbar,
+  #scene-site.stage-nutrient .navbar,
+  #scene-site.stage-fase0grow .navbar,
+  #scene-site.stage-fase1grow .navbar,
+  #scene-site.stage-fase2grow .navbar,
+  #scene-site.stage-fase3grow .navbar,
+  #scene-site.stage-fruit .navbar,
+  #scene-site.stage-fruitcollect .navbar,
+  #scene-site.stage-sell .navbar{
+    visibility:hidden;
+  }
+
+  #scene-site.stage-seed .action-row,
+  #scene-site.stage-water .action-row,
+  #scene-site.stage-weed .action-row,
+  #scene-site.stage-collect .action-row,
+  #scene-site.stage-nutrient .action-row,
+  #scene-site.stage-fase0grow .action-row,
+  #scene-site.stage-fase1grow .action-row,
+  #scene-site.stage-fase2grow .action-row,
+  #scene-site.stage-fase3grow .action-row,
+  #scene-site.stage-fruit .action-row,
+  #scene-site.stage-fruitcollect .action-row,
+  #scene-site.stage-sold .action-row,
+  #scene-site.stage-hierbadorinfo .action-row,
+  #scene-site.stage-closing1 .action-row,
+  #scene-site.stage-closing2 .action-row{
+    visibility:hidden;
+  }
+
+  #scene-site.stage-dispose .action-item-vender{
+    visibility:hidden;
+  }
+
+  #scene-site.stage-sell .action-item-trash{
+    visibility:hidden;
+  }
+
+  #scene-site.stage-seed .gallery-bar,
+  #scene-site.stage-fase0grow .gallery-bar,
+  #scene-site.stage-fase1grow .gallery-bar,
+  #scene-site.stage-fase2grow .gallery-bar,
+  #scene-site.stage-fase3grow .gallery-bar,
+  #scene-site.stage-sold .gallery-bar,
+  #scene-site.stage-hierbadorinfo .gallery-bar{
+    visibility:hidden;
+  }
+
+  #scene-site.stage-water .gallery-bar .slot:not(.slot-regadero){
+    visibility:hidden;
+  }
+
+  #scene-site.stage-weed .gallery-bar .slot:not(.slot-tijeras){
+    visibility:hidden;
+  }
+
+  #scene-site.stage-collect .gallery-bar .slot:not(.slot-pote),
+  #scene-site.stage-dispose .gallery-bar .slot:not(.slot-pote),
+  #scene-site.stage-fruitcollect .gallery-bar .slot:not(.slot-pote),
+  #scene-site.stage-sell .gallery-bar .slot:not(.slot-pote){
+    visibility:hidden;
+  }
+
+  #scene-site.stage-nutrient .gallery-bar .slot:not(.slot-nutriente){
+    visibility:hidden;
+  }
+
+  #scene-site.stage-fruit .gallery-bar .slot:not(.slot-hand){
+    visibility:hidden;
+  }
+
+  /* once the tutorial is finished, the HUD stays fully visible at every stage (normal play, no more focused single-tool view) */
+  #scene-site.tutorial-done.stage-seed .navbar,
+  #scene-site.tutorial-done.stage-water .navbar,
+  #scene-site.tutorial-done.stage-weed .navbar,
+  #scene-site.tutorial-done.stage-collect .navbar,
+  #scene-site.tutorial-done.stage-dispose .navbar,
+  #scene-site.tutorial-done.stage-nutrient .navbar,
+  #scene-site.tutorial-done.stage-fase0grow .navbar,
+  #scene-site.tutorial-done.stage-fase1grow .navbar,
+  #scene-site.tutorial-done.stage-fase2grow .navbar,
+  #scene-site.tutorial-done.stage-fase3grow .navbar,
+  #scene-site.tutorial-done.stage-fruit .navbar,
+  #scene-site.tutorial-done.stage-fruitcollect .navbar,
+  #scene-site.tutorial-done.stage-sell .navbar,
+  #scene-site.tutorial-done.stage-seed .action-row,
+  #scene-site.tutorial-done.stage-water .action-row,
+  #scene-site.tutorial-done.stage-weed .action-row,
+  #scene-site.tutorial-done.stage-collect .action-row,
+  #scene-site.tutorial-done.stage-dispose .action-row,
+  #scene-site.tutorial-done.stage-nutrient .action-row,
+  #scene-site.tutorial-done.stage-fase0grow .action-row,
+  #scene-site.tutorial-done.stage-fase1grow .action-row,
+  #scene-site.tutorial-done.stage-fase2grow .action-row,
+  #scene-site.tutorial-done.stage-fase3grow .action-row,
+  #scene-site.tutorial-done.stage-fruit .action-row,
+  #scene-site.tutorial-done.stage-fruitcollect .action-row,
+  #scene-site.tutorial-done.stage-seed .gallery-bar,
+  #scene-site.tutorial-done.stage-seed .gallery-bar .slot,
+  #scene-site.tutorial-done.stage-water .gallery-bar .slot,
+  #scene-site.tutorial-done.stage-weed .gallery-bar .slot,
+  #scene-site.tutorial-done.stage-collect .gallery-bar .slot,
+  #scene-site.tutorial-done.stage-dispose .gallery-bar .slot,
+  #scene-site.tutorial-done.stage-nutrient .gallery-bar .slot,
+  #scene-site.tutorial-done.stage-fase0grow .gallery-bar,
+  #scene-site.tutorial-done.stage-fase0grow .gallery-bar .slot,
+  #scene-site.tutorial-done.stage-fase1grow .gallery-bar,
+  #scene-site.tutorial-done.stage-fase1grow .gallery-bar .slot,
+  #scene-site.tutorial-done.stage-fase2grow .gallery-bar,
+  #scene-site.tutorial-done.stage-fase2grow .gallery-bar .slot,
+  #scene-site.tutorial-done.stage-fase3grow .gallery-bar,
+  #scene-site.tutorial-done.stage-fase3grow .gallery-bar .slot,
+  #scene-site.tutorial-done.stage-fruit .gallery-bar .slot,
+  #scene-site.tutorial-done.stage-fruitcollect .gallery-bar .slot,
+  #scene-site.tutorial-done.stage-sell .gallery-bar .slot,
+  #scene-site.tutorial-done.stage-dispose .action-item-vender,
+  #scene-site.tutorial-done.stage-sell .action-item-trash{
+    visibility:visible !important;
+  }
+
+  .tutorial-overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    display:flex;
+    justify-content:center;
+    z-index:5;
+    pointer-events:none;
+  }
+
+  .tutorial-btn,
+  .tutorial-seed .seed-drag{
+    pointer-events:auto;
+  }
+
+  .tutorial-step{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+    padding:44px 24px 0;
+    text-align:center;
+    max-width:300px;
+  }
+
+  #scene-site.stage-seed .tutorial-seed{
+    display:flex;
+  }
+
+  #scene-site.tutorial-done .tutorial-seed .plant-instruction{
+    display:none;
+  }
+
+  #scene-site.tutorial-done .tutorial-seed{
+    padding-top:170px;
+  }
+
+  #scene-site.stage-water:not(.tutorial-done) .tutorial-water{
+    display:flex;
+  }
+
+  #scene-site.stage-weed:not(.tutorial-done) .tutorial-weed{
+    display:flex;
+  }
+
+  #scene-site.stage-collect:not(.tutorial-done) .tutorial-collect{
+    display:flex;
+  }
+
+  #scene-site.stage-dispose:not(.tutorial-done) .tutorial-dispose{
+    display:flex;
+  }
+
+  #scene-site.stage-nutrient:not(.tutorial-done) .tutorial-nutrient{
+    display:flex;
+  }
+
+  #scene-site.stage-fruit:not(.tutorial-done) .tutorial-fruit{
+    display:flex;
+  }
+
+  #scene-site.stage-fruitcollect:not(.tutorial-done) .tutorial-fruitcollect{
+    display:flex;
+  }
+
+  #scene-site.stage-sell:not(.tutorial-done) .tutorial-sell{
+    display:flex;
+  }
+
+  #scene-site.stage-sold .tutorial-sold{
+    display:flex;
+  }
+
+  #scene-site.stage-hierbadorinfo .tutorial-hierbadorinfo{
+    display:flex;
+  }
+
+  #scene-site.stage-closing1 .tutorial-closing1{
+    display:flex;
+  }
+
+  #scene-site.stage-closing2 .tutorial-closing2{
+    display:flex;
+  }
+
+  .tutorial-fruit,
+  .tutorial-fruitcollect,
+  .tutorial-sell,
+  .tutorial-sold,
+  .tutorial-hierbadorinfo,
+  .tutorial-closing1,
+  .tutorial-closing2{
+    padding-top:90px;
+  }
+
+  .tutorial-btn{
+    margin-top:4px;
+    background:none;
+    border:1.5px solid var(--white);
+    color:var(--white);
+    padding:10px 26px;
+    border-radius:30px;
+    font-family:'Poppins',sans-serif;
+    font-size:13px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background 0.3s ease, color 0.3s ease;
+  }
+
+  .tutorial-btn:hover{
+    background:var(--white);
+    color:var(--wine);
+  }
+
+  .collected-badge,
+  .collected-badge-fruit{
+    position:absolute;
+    bottom:100%;
+    left:50%;
+    transform:translateX(-50%);
+    width:32px;
+    height:32px;
+    margin-bottom:-6px;
+    overflow:hidden;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+  }
+
+  #scene-site.stage-dispose .collected-badge,
+  #scene-site.wsub-dispose .collected-badge{
+    opacity:1;
+  }
+
+  #scene-site.stage-sell .collected-badge-fruit,
+  #scene-site.fsub-sell .collected-badge-fruit{
+    opacity:1;
+  }
+
+  .plant-instruction{
+    font-size:14px;
+    line-height:1.5;
+    color:var(--white);
+    max-width:260px;
+    text-shadow:0 1px 3px rgba(27,10,15,0.4);
+  }
+
+  .seed-drag{
+    position:relative;
+    width:74px;
+    height:74px;
+    cursor:grab;
+    touch-action:none;
+  }
+
+  .seed-drag img{
+    position:absolute;
+    top:0;
+    left:0;
+    width:438px;
+    height:438px;
+    transform:translate(-188px,-173px);
+    pointer-events:none;
+  }
+
+  .gallery-bar{
+    width:calc(100% - 48px);
+    margin:0 24px 28px;
+    background:var(--wine);
+    border-radius:18px;
+    padding:14px;
+    box-shadow:0 14px 30px rgba(27,10,15,0.35);
+    display:flex;
+    flex-wrap:nowrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+  }
+
+  .slot{
+    position:relative;
+    flex:1 1 0;
+    min-width:0;
+    height:42px;
+    cursor:grab;
+    touch-action:none;
+  }
+
+  .slot img{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:180px;
+    height:180px;
+    object-fit:contain;
+    pointer-events:none;
+  }
+
+  .slot-nutriente{
+    z-index:5;
+  }
+
+  .slot-nutriente .icon-frame{
+    position:absolute;
+    left:50%;
+    bottom:-4px;
+    transform:translateX(-50%);
+    width:52px;
+    height:52px;
+    overflow:hidden;
+  }
+
+  .slot-nutriente .icon-frame img{
+    position:absolute;
+    top:0;
+    left:0;
+    width:270px;
+    height:270px;
+    transform:translate(-109px,-110px);
+    pointer-events:none;
+  }
+
+  .qty-badge{
+    position:absolute;
+    bottom:-18px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:6;
+    color:var(--white);
+    font-size:15px;
+    font-weight:700;
+    text-shadow:0 1px 3px rgba(27,10,15,0.6);
+    pointer-events:none;
+    white-space:nowrap;
+  }
+
+  .slot[data-qty="0"]{
+    cursor:not-allowed;
+  }
+
+  .hierbador-icon{
+    position:absolute;
+    left:16.33%;
+    bottom:120px;
+    transform:translateX(-50%);
+    width:38px;
+    height:65px;
+    z-index:5;
+    cursor:grab;
+    touch-action:none;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.4s ease;
+  }
+
+  #scene-site.tutorial-done .hierbador-icon,
+  #scene-site.stage-hierbadorinfo .hierbador-icon,
+  #scene-site.stage-closing1 .hierbador-icon,
+  #scene-site.stage-closing2 .hierbador-icon{
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  .hierbador-icon img{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:230px;
+    height:230px;
+    object-fit:contain;
+    pointer-events:none;
+  }
+
+  .hierbador-count{
+    position:absolute;
+    bottom:-14px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:6;
+    color:var(--white);
+    font-size:15px;
+    font-weight:700;
+    text-shadow:0 1px 3px rgba(27,10,15,0.6);
+    pointer-events:none;
+    white-space:nowrap;
+  }
+
+  .drag-layer{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    z-index:40;
+  }
+
+  .dragging-icon{
+    cursor:grabbing;
+    filter:drop-shadow(0 12px 20px rgba(27,10,15,0.4));
+  }
+
+  /* ---------- Menu overlay ---------- */
+  .menu-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(27,10,15,0.55);
+    display:flex;
+    align-items:flex-start;
+    justify-content:flex-end;
+    padding:78px 20px 0 20px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+    z-index:50;
+  }
+
+  .menu-overlay.open{
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  .menu-panel{
+    background:var(--cream);
+    border-radius:14px;
+    width:180px;
+    overflow:hidden;
+    box-shadow:0 20px 45px rgba(27,10,15,0.4);
+    transform:translateY(-12px);
+    transition:transform 0.3s ease;
+  }
+
+  .menu-overlay.open .menu-panel{
+    transform:translateY(0);
+  }
+
+  .menu-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 22px;
+    font-size:14px;
+    letter-spacing:0.5px;
+    color:var(--wine);
+    cursor:pointer;
+    text-align:left;
+  }
+
+  .menu-icon{
+    width:28px;
+    height:28px;
+    overflow:hidden;
+    position:relative;
+    flex:0 0 auto;
+  }
+
+  .menu-icon img{
+    position:absolute;
+    top:0;
+    left:0;
+    pointer-events:none;
+  }
+
+  .menu-icon.jardin img{
+    width:106px;
+    height:106px;
+    transform:translate(-37px,-38px);
+  }
+
+  .menu-icon.coleccion img{
+    width:161px;
+    height:161px;
+    transform:translate(-69px,-69px);
+  }
+
+  .menu-icon.tienda img{
+    width:119px;
+    height:119px;
+    transform:translate(-47px,-44px);
+  }
+
+  .menu-item:not(:last-child){
+    border-bottom:1px solid var(--blush);
+  }
+
+  .menu-item:hover{
+    background:var(--blush);
+  }
+
+  /* ---------- Scene 5: tienda ---------- */
+  #scene-tienda,
+  #scene-coleccion{
+    justify-content:flex-start;
+    padding:0;
+    background:var(--cream);
+    overflow:hidden;
+  }
+
+  .navbar-left{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  .back-btn{
+    background:none;
+    border:none;
+    padding:6px 8px 6px 0;
+    font-size:26px;
+    line-height:1;
+    color:var(--wine);
+    cursor:pointer;
+  }
+
+  #scene-tienda .navbar{
+    background:rgba(92,26,46,0.06);
+  }
+
+  #scene-tienda .coin-count{
+    color:var(--wine);
+    text-shadow:none;
+  }
+
+  #scene-tienda .menu-btn span{
+    background:var(--wine);
+  }
+
+  .tienda-title{
+    width:calc(100% - 48px);
+    margin:22px 24px 4px;
+    font-size:22px;
+    color:var(--wine);
+    text-align:center;
+  }
+
+  .shop-list{
+    width:calc(100% - 48px);
+    margin:20px 24px 0;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .shop-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:var(--white);
+    border-radius:16px;
+    padding:12px 16px;
+    box-shadow:0 8px 20px rgba(92,26,46,0.12);
+  }
+
+  .shop-item-icon{
+    width:52px;
+    height:52px;
+    position:relative;
+    overflow:hidden;
+    flex:0 0 auto;
+  }
+
+  .shop-item-icon img{
+    position:absolute;
+    top:0;
+    left:0;
+    width:270px;
+    height:270px;
+    transform:translate(-109px,-110px);
+    pointer-events:none;
+  }
+
+  .shop-item-icon-hierbador img{
+    width:159px;
+    height:159px;
+    transform:translate(-54px,-51px);
+  }
+
+  .shop-item-info{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    min-width:0;
+  }
+
+  .shop-item-name{
+    font-weight:600;
+    color:var(--wine);
+    font-size:15px;
+  }
+
+  .shop-item-price{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    font-size:13px;
+    color:var(--wine);
+    opacity:0.75;
+  }
+
+  .shop-item-desc{
+    font-size:12px;
+    color:var(--wine);
+    opacity:0.65;
+    line-height:1.3;
+  }
+
+  .price-coin{
+    width:16px;
+    height:16px;
+    object-fit:contain;
+  }
+
+  .shop-buy-btn{
+    flex:0 0 auto;
+    background:none;
+    border:1.5px solid var(--wine);
+    color:var(--wine);
+    padding:9px 18px;
+    border-radius:30px;
+    font-family:'Poppins',sans-serif;
+    font-size:12px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+  }
+
+  .shop-buy-btn:hover:not(:disabled){
+    background:var(--wine);
+    color:var(--cream);
+  }
+
+  .shop-buy-btn:disabled{
+    opacity:0.35;
+    cursor:not-allowed;
+  }
+
+  .shop-soon{
+    margin:22px 24px 0;
+    font-size:13px;
+    color:var(--wine);
+    opacity:0.55;
+    text-align:center;
+  }
+
+  .shop-item-icon.collection-icon-florescarta img{
+    width:49px;
+    height:49px;
+    transform:translate(2px,1px);
+  }
+
+  .shop-item-icon.collection-icon-girasol img{
+    width:63px;
+    height:63px;
+    transform:translate(-4px,-15px);
+  }
+
+  .shop-item-icon.collection-icon-cactus img{
+    width:77px;
+    height:77px;
+    transform:translate(-12px,-29px);
+  }
+
+  .shop-item-icon.collection-icon-poliamarilla img{
+    width:69px;
+    height:69px;
+    transform:translate(-10px,-20px);
+  }
+
+  .shop-item-icon.collection-icon-chiquitina img{
+    width:99px;
+    height:99px;
+    transform:translate(-20px,-50px);
+  }
+
+  .shop-item-icon.collection-icon-callampin img{
+    width:74px;
+    height:74px;
+    transform:translate(-11px,-26px);
+  }
+
+  .shop-item-icon.collection-icon-rosadorada img{
+    width:76px;
+    height:76px;
+    transform:translate(-9px,-25px);
+  }
+
+  .collection-count{
+    flex:0 0 auto;
+    font-family:'Poppins',sans-serif;
+    font-size:16px;
+    font-weight:700;
+    color:var(--wine);
+  }
+
+  .collection-locked-mark{
+    display:none;
+    position:absolute;
+    inset:0;
+    align-items:center;
+    justify-content:center;
+    font-family:'Poppins',sans-serif;
+    font-size:24px;
+    font-weight:700;
+    color:var(--wine);
+    opacity:0.5;
+  }
+
+  .shop-item.locked .shop-item-icon img{
+    visibility:hidden;
+  }
+
+  .shop-item.locked .collection-locked-mark{
+    display:flex;
+  }
+
+  .collection-view-btn{
+    flex:0 0 auto;
+    background:none;
+    border:1.5px solid var(--wine);
+    color:var(--wine);
+    padding:7px 16px;
+    border-radius:30px;
+    font-family:'Poppins',sans-serif;
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background 0.3s ease, color 0.3s ease;
+  }
+
+  .collection-view-btn:hover{
+    background:var(--wine);
+    color:var(--cream);
+  }
+
+  .shop-item.locked .collection-view-btn{
+    display:none;
+  }
+
+  .collection-view-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(27,10,15,0.75);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:50;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+  }
+
+  .collection-view-overlay.show{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
+
+  .collection-view-img{
+    width:70%;
+    max-width:300px;
+    aspect-ratio:1/1;
+    object-fit:contain;
+    filter:drop-shadow(0 20px 40px rgba(0,0,0,0.45));
+  }
+
+  .collection-view-back{
+    position:absolute;
+    top:24px;
+    left:24px;
+    background:var(--wine);
+    color:var(--cream);
+    border:none;
+    padding:10px 20px;
+    border-radius:30px;
+    font-family:'Poppins',sans-serif;
+    font-size:12px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+</style>
 </head>
-
 <body>
 
-  <h1>Noily Privacy Policy</h1>
+<div class="app-frame">
 
-  <p class="updated"><strong>Last updated:</strong> September 2, 2026</p>
+  <div class="scene active" id="scene-card" onclick="showScene('scene-message1')">
+    <img src="Carta.PNG" alt="Carta" class="carta-img">
+    <div class="tap-hint">Toca para abrir</div>
+  </div>
 
-  <p>
-    Noily is developed and operated by TCnology.
-    Noily respects your privacy. This Privacy Policy explains what information
-    may be collected when you use Noily, how it is used, and the choices
-    available to you.
-  </p>
+  <div class="scene" id="scene-message1">
+    <div class="letter-page">
+      <img src="HojaCarta.PNG" alt="" class="letter-bg">
+      <div class="letter-content">
+        <img src="FloresCarta.PNG" alt="Flores" class="flowers-img">
+        <p class="message">Las que la mujer más fuerte y hermosa del mundo se merece, te amo demasiado mi princesa, nunca se rinda con nada, te amo demasiadoooo.</p>
+      </div>
+    </div>
+    <button class="next-btn" onclick="showScene('scene-message2')">Siguiente</button>
+  </div>
 
-  <p>
-    By using Noily, you agree to the practices described in this Privacy Policy.
-  </p>
+  <div class="scene" id="scene-message2">
+    <div class="seed-icon"><img src="Semillas.PNG" alt="Semillas"></div>
+    <p class="message">Tuve que cortar unas flores del suelo para dartelas, pero puedes tener más con estas semillas, pero ten paciencia que las plantas crecen lento</p>
+    <button class="next-btn" onclick="showScene('scene-site')">Continuar</button>
+  </div>
 
-  <h2>1. Information We Collect</h2>
+  <div class="scene stage-seed" id="scene-site">
+    <nav class="navbar">
+      <div class="coin-display">
+        <img src="Marticoins.PNG" alt="Marticoins" class="coin-icon">
+        <span class="coin-count">0</span>
+      </div>
+      <button class="menu-btn" onclick="toggleMenu(true)" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="tutorial-overlay">
+      <div class="tutorial-step tutorial-seed">
+        <p class="plant-instruction">Arrastra la semilla y plántala en la tierra</p>
+        <div class="seed-drag" data-plantable="true"><img src="Semillas.PNG" alt="Semillas"></div>
+      </div>
+      <div class="tutorial-step tutorial-water">
+        <p class="plant-instruction">Toma el regadero para regar tu planta. Sin agua no crecerá, y si pasa mucho tiempo sin ella, morirá, así que necesitará agua de vez en cuando, ¡no dejes que muera de sed!</p>
+      </div>
+      <div class="tutorial-step tutorial-weed">
+        <p class="plant-instruction">¡Cuidado, salieron malas hierbas! Aparecen de vez en cuando y hacen que tu planta gaste más agua. Córtalas con las tijeras</p>
+      </div>
+      <div class="tutorial-step tutorial-collect">
+        <p class="plant-instruction">Ahora agarra la mala hierba y arrástrala al pote</p>
+      </div>
+      <div class="tutorial-step tutorial-dispose">
+        <p class="plant-instruction">Toma el pote, ahora cargado con la mala hierba, y bótalo en el basurero</p>
+      </div>
+      <div class="tutorial-step tutorial-nutrient">
+        <p class="plant-instruction">Los nutrientes no solo ayudan a que tu planta crezca, sino que acortan el tiempo de espera para que crezca. Te daremos uno para que lo pruebes: arrástralo hasta la tierra</p>
+      </div>
+      <div class="tutorial-step tutorial-fruit">
+        <p class="plant-instruction">¡Esto es un Coratón! Una fruta de flores amarillas. Sácala con el guante</p>
+      </div>
+      <div class="tutorial-step tutorial-fruitcollect">
+        <p class="plant-instruction">Ahora ponla en el pote</p>
+      </div>
+      <div class="tutorial-step tutorial-sell">
+        <p class="plant-instruction">Esta vez, en vez de botarlo, llévalo a vender</p>
+      </div>
+      <div class="tutorial-step tutorial-sold">
+        <p class="plant-instruction">¡Vendiste tu Coratón y ganaste 1 Marticoin!</p>
+        <button class="tutorial-btn" onclick="finishSale()">Entendido</button>
+      </div>
+      <div class="tutorial-step tutorial-hierbadorinfo">
+        <p class="plant-instruction">También puedes usar el Hierbador: al aplicarlo en la tierra, durante 10 minutos no crecerán malas hierbas</p>
+        <button class="tutorial-btn" onclick="finishHierbadorInfo()">Entendido</button>
+      </div>
+      <div class="tutorial-step tutorial-closing1">
+        <p class="plant-instruction">Puedes comprar más nutrientes en la Tienda</p>
+        <button class="tutorial-btn" onclick="advanceClosing()">Entendido</button>
+      </div>
+      <div class="tutorial-step tutorial-closing2">
+        <p class="plant-instruction">Ahora solo queda cuidar tu planta y ayudarla a crecer</p>
+        <button class="tutorial-btn" onclick="finishTutorial()">Entendido</button>
+      </div>
+    </div>
+    <div class="collect-row">
+      <button class="collect-btn" onclick="collectPlant()">Recoger</button>
+    </div>
+    <div class="action-row">
+      <div class="action-item action-item-vender">
+        <div class="icon-clip icon-vender"><img src="Vender.PNG" alt="Vender"></div>
+        <span class="action-label">Vender</span>
+      </div>
+      <div class="action-item action-item-trash">
+        <div class="icon-clip icon-trash"><img src="Trash.PNG" alt="Eliminar"></div>
+        <span class="action-label">Botar</span>
+      </div>
+    </div>
+    <div class="hero">
+      <div class="earth-wrap">
+        <img src="Tierra.PNG" alt="Tierra" class="hero-earth" id="hero-earth-img">
+        <img src="TierraContorno.PNG" alt="" class="earth-outline" id="earth-outline-img">
+        <div class="water-splash" id="water-splash"><img src="Agua.PNG" alt=""></div>
+        <div class="water-splash" id="herbicide-splash"><img src="Acido.PNG" alt=""></div>
+        <div class="weed-sprite" id="weed-sprite"><img src="MalaHierba.PNG" alt="Mala hierba"></div>
+        <div class="weed-item" id="weed-item" data-collect="true"><img src="ItemMalaHierba.PNG" alt="Mala hierba cortada"></div>
+        <div class="fase1-sprite" id="fase1-sprite"><img src="Fase1.PNG" alt=""></div>
+        <div class="fase2-sprite" id="fase2-sprite">
+          <img src="Fase2GirasolGigante.PNG" alt="Girasol gigante" class="fase2-girasol">
+          <img src="Fase2cactus.PNG" alt="Cactus" class="fase2-cactus">
+          <img src="Fase2Poliamarilla.PNG" alt="Poliamarilla" class="fase2-poliamarilla">
+          <img src="Fase2Chiquitina.PNG" alt="Chiquitina" class="fase2-chiquitina">
+          <img src="Fase2Callampin.PNG" alt="Callampín" class="fase2-callampin">
+          <img src="Fase2RosaDorada.PNG" alt="Rosa Dorada" class="fase2-rosadorada">
+        </div>
+        <div class="fase3-sprite" id="fase3-sprite">
+          <img src="GirasolGigante.PNG" alt="Girasol gigante" class="fase3-girasol">
+          <img src="Cactus.PNG" alt="Cactus" class="fase3-cactus">
+          <img src="Poliamarilla.PNG" alt="Poliamarilla" class="fase3-poliamarilla">
+          <img src="Chiquitina.PNG" alt="Chiquitina" class="fase3-chiquitina">
+          <img src="Callampin.PNG" alt="Callampín" class="fase3-callampin">
+          <img src="RosaDorada.PNG" alt="Rosa Dorada" class="fase3-rosadorada">
+        </div>
+        <div class="fruit-sprite" id="fruit-sprite"><img src="CoratonD.PNG" alt="Fruta"></div>
+        <div class="fruit-item" id="fruit-item" data-collect="true"><img src="CoratonD.PNG" alt="Fruta recolectada"></div>
+      </div>
+      <div class="water-bar-wrap">
+        <div class="water-bar-track"><div class="water-bar-fill" id="water-fill"></div></div>
+      </div>
+    </div>
+    <div class="hierbador-icon" id="hierbador-icon" data-qty="0" data-min-qty="1" data-herbicide="true">
+      <img src="Hierbador.PNG" alt="Hierbador">
+      <span class="hierbador-count" id="hierbador-count">x0</span>
+    </div>
+    <div class="gallery-bar">
+      <div class="slot slot-regadero" data-waterable="true"><img src="Regadero.PNG" alt="Regadero"></div>
+      <div class="slot slot-nutriente" data-qty="0" data-fertilizer="true">
+        <span class="qty-badge">x0</span>
+        <div class="icon-frame">
+          <img src="Nutriente.PNG" alt="Nutriente">
+        </div>
+      </div>
+      <div class="slot slot-pote" data-trashable="true">
+        <img src="Pote.PNG" alt="Pote" class="pote-main-img">
+        <div class="collected-badge"><img src="ItemMalaHierba.PNG" alt="" style="position:absolute;top:0;left:0;width:49px;height:49px;transform:translate(-8px,-9px);"></div>
+        <div class="collected-badge-fruit"><img src="CoratonD.PNG" alt="" style="position:absolute;top:0;left:0;width:49px;height:49px;transform:translate(-8px,-9px);"></div>
+      </div>
+      <div class="slot slot-tijeras" data-cutter="true"><img src="Tijeras.PNG" alt="Tijeras"></div>
+      <div class="slot slot-hand" data-cutter="true"><img src="Hand.PNG" alt="Mano"></div>
+    </div>
+    <div class="drag-layer" id="drag-layer"></div>
+  </div>
 
-  <p>
-    Noily does not require you to create an account or provide information
-    such as your name, email address, or phone number to use the core features
-    of the application.
-  </p>
+  <div class="scene" id="scene-tienda">
+    <nav class="navbar">
+      <div class="navbar-left">
+        <button class="back-btn" onclick="showScene('scene-site')" aria-label="Volver">&#8249;</button>
+        <div class="coin-display">
+          <img src="Marticoins.PNG" alt="Marticoins" class="coin-icon">
+          <span class="coin-count">0</span>
+        </div>
+      </div>
+      <button class="menu-btn" onclick="toggleMenu(true)" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <h2 class="tienda-title">Tienda</h2>
+    <div class="shop-list">
+      <div class="shop-item">
+        <div class="shop-item-icon"><img src="Nutriente.PNG" alt="Nutriente"></div>
+        <div class="shop-item-info">
+          <span class="shop-item-name">Nutriente</span>
+          <span class="shop-item-desc">Acorta el tiempo de espera para que tu planta crezca</span>
+          <span class="shop-item-price">2 <img src="Marticoins.PNG" class="price-coin" alt=""></span>
+        </div>
+        <button class="shop-buy-btn" data-price="2" onclick="buyNutriente()">Comprar</button>
+      </div>
+      <div class="shop-item">
+        <div class="shop-item-icon shop-item-icon-hierbador"><img src="Hierbador.PNG" alt="Hierbador"></div>
+        <div class="shop-item-info">
+          <span class="shop-item-name">Hierbador</span>
+          <span class="shop-item-desc">Evita que salgan malas hierbas durante 10 minutos</span>
+          <span class="shop-item-price">4 <img src="Marticoins.PNG" class="price-coin" alt=""></span>
+        </div>
+        <button class="shop-buy-btn" data-price="4" onclick="buyHierbador()">Comprar</button>
+      </div>
+    </div>
+    <p class="shop-soon">Vienen más cosas pronto...</p>
+  </div>
 
-  <p>
-    Depending on the platform and features you use, certain technical and
-    usage information may be processed by third-party services integrated
-    into Noily.
-  </p>
+  <div class="scene" id="scene-coleccion">
+    <nav class="navbar">
+      <div class="navbar-left">
+        <button class="back-btn" onclick="showScene('scene-site')" aria-label="Volver">&#8249;</button>
+      </div>
+      <button class="menu-btn" onclick="toggleMenu(true)" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <h2 class="tienda-title">Colección</h2>
+    <div class="shop-list">
+      <div class="shop-item">
+        <div class="shop-item-icon collection-icon-florescarta"><img src="FloresCarta.PNG" alt="Flores de la carta"></div>
+        <div class="shop-item-info">
+          <span class="shop-item-name">Flores de la carta</span>
+        </div>
+        <button class="collection-view-btn" onclick="showCollectionViewImg('FloresCarta.PNG')">Ver</button>
+      </div>
+      <div class="shop-item" id="collection-item-girasol">
+        <div class="shop-item-icon collection-icon-girasol"><img src="GirasolGigante.PNG" alt="Girasol gigante"><span class="collection-locked-mark">?</span></div>
+        <div class="shop-item-info">
+          <span class="shop-item-name" id="collection-name-girasol">Girasol Gigante</span>
+          <span class="shop-item-desc">Probabilidad: 45%</span>
+        </div>
+        <button class="collection-view-btn" onclick="showCollectionView('girasol')">Ver</button>
+        <span class="collection-count" id="collection-count-girasol">x0</span>
+      </div>
+      <div class="shop-item" id="collection-item-cactus">
+        <div class="shop-item-icon collection-icon-cactus"><img src="Cactus.PNG" alt="Cactus"><span class="collection-locked-mark">?</span></div>
+        <div class="shop-item-info">
+          <span class="shop-item-name" id="collection-name-cactus">Cactus</span>
+          <span class="shop-item-desc">Probabilidad: 15%</span>
+        </div>
+        <button class="collection-view-btn" onclick="showCollectionView('cactus')">Ver</button>
+        <span class="collection-count" id="collection-count-cactus">x0</span>
+      </div>
+      <div class="shop-item" id="collection-item-poliamarilla">
+        <div class="shop-item-icon collection-icon-poliamarilla"><img src="Poliamarilla.PNG" alt="Poliamarilla"><span class="collection-locked-mark">?</span></div>
+        <div class="shop-item-info">
+          <span class="shop-item-name" id="collection-name-poliamarilla">Poliamarilla</span>
+          <span class="shop-item-desc">Probabilidad: 30%</span>
+        </div>
+        <button class="collection-view-btn" onclick="showCollectionView('poliamarilla')">Ver</button>
+        <span class="collection-count" id="collection-count-poliamarilla">x0</span>
+      </div>
+      <div class="shop-item" id="collection-item-chiquitina">
+        <div class="shop-item-icon collection-icon-chiquitina"><img src="Chiquitina.PNG" alt="Chiquitina"><span class="collection-locked-mark">?</span></div>
+        <div class="shop-item-info">
+          <span class="shop-item-name" id="collection-name-chiquitina">Chiquitina</span>
+          <span class="shop-item-desc">Probabilidad: 5%</span>
+        </div>
+        <button class="collection-view-btn" onclick="showCollectionView('chiquitina')">Ver</button>
+        <span class="collection-count" id="collection-count-chiquitina">x0</span>
+      </div>
+      <div class="shop-item" id="collection-item-callampin">
+        <div class="shop-item-icon collection-icon-callampin"><img src="Callampin.PNG" alt="Callampín"><span class="collection-locked-mark">?</span></div>
+        <div class="shop-item-info">
+          <span class="shop-item-name" id="collection-name-callampin">Callampín</span>
+          <span class="shop-item-desc">Probabilidad: 4.9%</span>
+        </div>
+        <button class="collection-view-btn" onclick="showCollectionView('callampin')">Ver</button>
+        <span class="collection-count" id="collection-count-callampin">x0</span>
+      </div>
+      <div class="shop-item" id="collection-item-rosadorada">
+        <div class="shop-item-icon collection-icon-rosadorada"><img src="RosaDorada.PNG" alt="Rosa Dorada"><span class="collection-locked-mark">?</span></div>
+        <div class="shop-item-info">
+          <span class="shop-item-name" id="collection-name-rosadorada">Rosa Dorada</span>
+          <span class="shop-item-desc">Probabilidad: 0.1%</span>
+        </div>
+        <button class="collection-view-btn" onclick="showCollectionView('rosadorada')">Ver</button>
+        <span class="collection-count" id="collection-count-rosadorada">x0</span>
+      </div>
+    </div>
+  </div>
 
-  <h2>2. Alarm and App Data</h2>
+  <div class="collection-view-overlay" id="collection-view-overlay">
+    <button class="collection-view-back" onclick="hideCollectionView()">&#8249; Volver</button>
+    <img class="collection-view-img" id="collection-view-img" src="" alt="">
+  </div>
 
-  <p>
-    Noily may store information necessary for the application to function,
-    including:
-  </p>
+  <div class="menu-overlay" id="menu-overlay" onclick="toggleMenu(false)">
+    <div class="menu-panel" onclick="event.stopPropagation()">
+      <div class="menu-item" onclick="goToScene('scene-site')"><span class="menu-icon jardin"><img src="Regadero.PNG" alt=""></span><span>Jardín</span></div>
+      <div class="menu-item" onclick="goToScene('scene-coleccion')"><span class="menu-icon coleccion"><img src="Collecion.PNG" alt=""></span><span>Colección</span></div>
+      <div class="menu-item" onclick="goToScene('scene-tienda')"><span class="menu-icon tienda"><img src="Tienda.PNG" alt=""></span><span>Tienda</span></div>
+    </div>
+  </div>
 
-  <ul>
-    <li>Alarm settings and schedules.</li>
-    <li>Selected days for alarms.</li>
-    <li>Challenge settings.</li>
-    <li>Timer settings.</li>
-    <li>Calendar Alarm settings.</li>
-    <li>Streak-related information.</li>
-    <li>Application preferences and settings.</li>
-  </ul>
+</div>
 
-  <p>
-    This information is primarily stored locally on your device and is used
-    to provide the features of Noily.
-  </p>
+<script>
+  const PROGRESS_KEY = 'nuestrasemilla:scene';
 
-  <p>
-    Noily does not use alarm names, exact alarm times, challenge answers,
-    or similar app content for advertising purposes.
-  </p>
+  function showScene(id, save = true){
+    document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    if(save){
+      try{ localStorage.setItem(PROGRESS_KEY, id); }catch(e){}
+    }
+  }
 
-  <p>
-    Noily does not intentionally send alarm names, exact alarm times,
-    challenge answers, or similar personal app content to Google Analytics,
-    Firebase Crashlytics, or Google AdMob as part of its normal operation.
-  </p>
+  function toggleMenu(open){
+    document.getElementById('menu-overlay').classList.toggle('open', open);
+  }
 
-  <h2>3. Permissions</h2>
+  function goToScene(id){
+    toggleMenu(false);
+    showScene(id);
+    if(id === 'scene-tienda') refreshShop();
+    if(id === 'scene-coleccion') renderCollection();
+  }
 
-  <p>
-    Noily may request certain device permissions that are necessary to provide
-    its functionality. Depending on the platform and device, these may include
-    permissions related to notifications, alarms, sound, vibration, and
-    background operation.
-  </p>
+  const COLLECTION_KEY = 'nuestrasemilla:collection';
 
-  <p>
-    These permissions are used to allow Noily to schedule and deliver alarms,
-    display notifications, play alarm sounds, and provide other features of
-    the application. Noily does not use these permissions to collect
-    unnecessary personal information.
-  </p>
+  function renderCollectionSlot(collection, species, displayName){
+    const count = collection[species] || 0;
+    const item = document.getElementById('collection-item-' + species);
+    const countEl = document.getElementById('collection-count-' + species);
+    const nameEl = document.getElementById('collection-name-' + species);
+    if(item) item.classList.toggle('locked', count <= 0);
+    if(countEl) countEl.textContent = 'x' + count;
+    if(nameEl) nameEl.textContent = (count > 0) ? displayName : '????';
+  }
 
-  <h2>4. Advertising</h2>
+  function renderCollection(){
+    let collection = {};
+    try{ collection = JSON.parse(localStorage.getItem(COLLECTION_KEY) || '{}'); }catch(e){}
+    renderCollectionSlot(collection, 'girasol', 'Girasol Gigante');
+    renderCollectionSlot(collection, 'cactus', 'Cactus');
+    renderCollectionSlot(collection, 'poliamarilla', 'Poliamarilla');
+    renderCollectionSlot(collection, 'chiquitina', 'Chiquitina');
+    renderCollectionSlot(collection, 'callampin', 'Callampín');
+    renderCollectionSlot(collection, 'rosadorada', 'Rosa Dorada');
+  }
 
-  <p>
-    The free version of Noily may display advertisements on supported
-    platforms.
-  </p>
+  const COLLECTION_VIEW_IMG = {
+    girasol: 'GirasolGigante.PNG',
+    cactus: 'Cactus.PNG',
+    poliamarilla: 'Poliamarilla.PNG',
+    chiquitina: 'Chiquitina.PNG',
+    callampin: 'Callampin.PNG',
+    rosadorada: 'RosaDorada.PNG'
+  };
 
-  <p>
-    On Android, Noily uses Google AdMob to display advertisements.
-    AdMob may collect and process certain information, including device
-    information, advertising identifiers, approximate location, and
-    information about interactions with advertisements, according to
-    Google's policies and applicable privacy settings.
-  </p>
+  function showCollectionView(species){
+    let collection = {};
+    try{ collection = JSON.parse(localStorage.getItem(COLLECTION_KEY) || '{}'); }catch(e){}
+    if(!collection[species]) return;
+    const img = document.getElementById('collection-view-img');
+    img.src = COLLECTION_VIEW_IMG[species];
+    img.alt = species;
+    document.getElementById('collection-view-overlay').classList.add('show');
+  }
 
-  <p>
-    Where required by applicable law, users may be presented with privacy
-    and consent choices regarding advertising and the processing of
-    information for advertising purposes.
-  </p>
+  function showCollectionViewImg(src){
+    const img = document.getElementById('collection-view-img');
+    img.src = src;
+    img.alt = '';
+    document.getElementById('collection-view-overlay').classList.add('show');
+  }
 
-  <p>
-    Noily Pro removes advertisements from the application.
-  </p>
+  function hideCollectionView(){
+    document.getElementById('collection-view-overlay').classList.remove('show');
+  }
 
-  <p>
-    At the current time, advertisements are not enabled in the iOS version
-    of Noily.
-  </p>
+  function collectPlant(){
+    let species = 'girasol';
+    try{ species = localStorage.getItem(SPECIES_KEY) || 'girasol'; }catch(e){}
+    let collection = {};
+    try{ collection = JSON.parse(localStorage.getItem(COLLECTION_KEY) || '{}'); }catch(e){}
+    collection[species] = (collection[species] || 0) + 1;
+    try{ localStorage.setItem(COLLECTION_KEY, JSON.stringify(collection)); }catch(e){}
+    resetGardenForNewSeed();
+    goToScene('scene-coleccion');
+  }
 
-  <h2>5. Analytics</h2>
+  function resetGardenForNewSeed(){
+    if(fase0Timer){ clearTimeout(fase0Timer); fase0Timer = null; }
+    if(fase1Timer){ clearTimeout(fase1Timer); fase1Timer = null; }
+    if(fase2Timer){ clearTimeout(fase2Timer); fase2Timer = null; }
+    if(weedCheckTimer){ clearTimeout(weedCheckTimer); weedCheckTimer = null; }
+    if(fruitCheckTimer){ clearTimeout(fruitCheckTimer); fruitCheckTimer = null; }
+    if(waterDryTimer){ clearTimeout(waterDryTimer); waterDryTimer = null; }
+    if(waterDeathTimer){ clearTimeout(waterDeathTimer); waterDeathTimer = null; }
+    try{ localStorage.removeItem(SPECIES_KEY); }catch(e){}
+    try{ localStorage.removeItem(FASE0_START_KEY); }catch(e){}
+    try{ localStorage.removeItem(FASE1_START_KEY); }catch(e){}
+    try{ localStorage.removeItem(FASE2_START_KEY); }catch(e){}
+    try{ localStorage.removeItem(PLANT_GROWN_KEY); }catch(e){}
+    try{ localStorage.removeItem(WEED_CHECK_KEY); }catch(e){}
+    try{ localStorage.removeItem(FRUIT_CHECK_KEY); }catch(e){}
+    const weedSubOnCollect = getWeedSubstage();
+    if(weedSubOnCollect !== 'collect' && weedSubOnCollect !== 'dispose'){
+      setWeedSubstage('none');
+    }
+    const fruitSubOnCollect = getFruitSubstage();
+    if(fruitSubOnCollect !== 'collect' && fruitSubOnCollect !== 'sell'){
+      setFruitSubstage('none');
+    }
+    document.getElementById('scene-site').classList.remove('plant-grown');
+    document.getElementById('hero-earth-img').src = 'Tierra.PNG';
+    try{ localStorage.removeItem(WATER_LAST_KEY); }catch(e){}
+    try{ localStorage.removeItem(WATER_LEVEL_KEY); }catch(e){}
+    document.getElementById('water-fill').style.transition = 'none';
+    document.getElementById('water-fill').style.width = '0%';
+    const seedSlot = document.querySelector('.seed-drag');
+    if(seedSlot && !seedSlot.querySelector('img')){
+      const seedImg = document.createElement('img');
+      seedImg.src = 'Semillas.PNG';
+      seedImg.alt = 'Semillas';
+      seedSlot.appendChild(seedImg);
+    }
+    setStage('seed');
+  }
 
-  <p>
-    Noily uses Google Analytics for Firebase to understand how users interact
-    with the application and to improve its features and reliability.
-  </p>
+  const COINS_KEY = 'nuestrasemilla:coins';
+  const NUTRIENT_KEY = 'nuestrasemilla:nutrientQty';
+  const NUTRIENT_PRICE = 2;
+  const HIERBADOR_KEY = 'nuestrasemilla:hierbadorQty';
+  const HIERBADOR_PRICE = 4;
+  let coins = 0;
+  let nutrientQty = 0;
+  let hierbadorQty = 0;
 
-  <p>Analytics may collect information such as:</p>
+  function setCoins(n){
+    coins = n;
+    document.querySelectorAll('.coin-count').forEach(el => el.textContent = n);
+    try{ localStorage.setItem(COINS_KEY, n); }catch(e){}
+    refreshShop();
+  }
 
-  <ul>
-    <li>Application interactions and events.</li>
-    <li>Device and operating system information.</li>
-    <li>Application version.</li>
-    <li>General usage information.</li>
-  </ul>
+  function setNutrientQty(n){
+    nutrientQty = n;
+    const slot = document.querySelector('.slot-nutriente');
+    slot.dataset.qty = String(n);
+    slot.querySelector('.qty-badge').textContent = 'x' + n;
+    try{ localStorage.setItem(NUTRIENT_KEY, n); }catch(e){}
+  }
 
-  <p>
-    Noily uses analytics events related to actions such as creating alarms,
-    completing challenges, creating Calendar Alarms, opening the Noily Pro
-    screen, and completing a Pro purchase.
-  </p>
+  function setHierbadorQty(n){
+    hierbadorQty = n;
+    const icon = document.getElementById('hierbador-icon');
+    if(icon) icon.dataset.qty = String(n);
+    const countEl = document.getElementById('hierbador-count');
+    if(countEl) countEl.textContent = 'x' + n;
+    try{ localStorage.setItem(HIERBADOR_KEY, n); }catch(e){}
+  }
 
-  <p>
-    Noily is designed to avoid sending unnecessary personal information
-    through these events. For example, Noily does not intentionally send
-    alarm names, user names, exact alarm times, or challenge answers as
-    Analytics event data.
-  </p>
+  /* ---------- Hierbador: outlines the dirt in yellow for 20 min when used ---------- */
+  const HIERBADOR_DURATION = 10 * 60 * 1000;
+  const HIERBADOR_ACTIVE_KEY = 'nuestrasemilla:hierbadorActiveAt';
+  let hierbadorExpiryTimer = null;
 
-  <h2>6. Crash Reporting</h2>
+  function useHierbador(){
+    setHierbadorQty(Math.max(0, hierbadorQty - 1));
+    try{ localStorage.setItem(HIERBADOR_ACTIVE_KEY, String(Date.now())); }catch(e){}
+    document.getElementById('scene-site').classList.add('hierbador-active');
+    scheduleHierbadorExpiry();
 
-  <p>
-    Noily uses Firebase Crashlytics to identify and diagnose crashes and
-    technical problems.
-  </p>
+    const splash = document.getElementById('herbicide-splash');
+    splash.classList.add('show');
+    setTimeout(() => splash.classList.remove('show'), 700);
+  }
 
-  <p>Crashlytics may collect information such as:</p>
+  function scheduleHierbadorExpiry(){
+    if(hierbadorExpiryTimer){ clearTimeout(hierbadorExpiryTimer); hierbadorExpiryTimer = null; }
+    let start = null;
+    try{ start = parseInt(localStorage.getItem(HIERBADOR_ACTIVE_KEY), 10) || null; }catch(e){}
+    if(!start) return;
+    const remaining = HIERBADOR_DURATION - (Date.now() - start);
+    if(remaining <= 0){
+      expireHierbador();
+      return;
+    }
+    hierbadorExpiryTimer = setTimeout(expireHierbador, remaining);
+  }
 
-  <ul>
-    <li>Device information.</li>
-    <li>Operating system information.</li>
-    <li>Application version.</li>
-    <li>Crash and error information.</li>
-    <li>Technical information related to a crash.</li>
-  </ul>
+  function expireHierbador(){
+    hierbadorExpiryTimer = null;
+    document.getElementById('scene-site').classList.remove('hierbador-active');
+    try{ localStorage.removeItem(HIERBADOR_ACTIVE_KEY); }catch(e){}
+  }
 
-  <p>
-    This information is used to improve the stability, performance, and
-    reliability of Noily.
-  </p>
+  function isHierbadorActive(){
+    try{ return !!localStorage.getItem(HIERBADOR_ACTIVE_KEY); }catch(e){ return false; }
+  }
 
-  <h2>7. Third-Party Services</h2>
+  function refreshShop(){
+    document.querySelectorAll('.shop-buy-btn').forEach(btn => {
+      const price = parseInt(btn.dataset.price, 10) || 0;
+      btn.disabled = coins < price;
+    });
+  }
 
-  <p>
-    Noily currently uses the following third-party services:
-  </p>
+  function buyNutriente(){
+    if(coins < NUTRIENT_PRICE) return;
+    setCoins(coins - NUTRIENT_PRICE);
+    setNutrientQty(nutrientQty + 1);
+  }
 
-  <ul>
-    <li>Google Firebase Analytics — for application usage analytics.</li>
-    <li>Firebase Crashlytics — for crash and error reporting.</li>
-    <li>Google AdMob — for advertising on supported versions of Noily.</li>
-  </ul>
+  function buyHierbador(){
+    if(coins < HIERBADOR_PRICE) return;
+    setCoins(coins - HIERBADOR_PRICE);
+    setHierbadorQty(hierbadorQty + 1);
+  }
 
-  <p>
-    These services may process information according to their own privacy
-    policies and terms.
-  </p>
+  (function restoreProgress(){
+    let saved = null;
+    try{ saved = localStorage.getItem(PROGRESS_KEY); }catch(e){}
+    if(saved && document.getElementById(saved)){
+      showScene(saved, false);
+    }
+  })();
 
-  <h2>8. Purchases and Subscriptions</h2>
+  let dragState = null;
 
-  <p>
-    Noily offers paid features through Noily Pro. Purchases and subscriptions
-    are processed through the applicable platform's official payment system,
-    such as Google Play or the Apple App Store.
-  </p>
+  function onDragStart(e){
+    const slot = e.currentTarget;
+    const minQty = slot.dataset.minQty ? parseInt(slot.dataset.minQty, 10) : 1;
+    if(slot.dataset.qty !== undefined && parseInt(slot.dataset.qty, 10) < minQty) return;
+    const img = slot.querySelector('.pote-main-img') || slot.querySelector('img');
+    if(!img) return;
 
-  <p>
-    Noily does not directly collect or store your payment card number or
-    other payment credentials used to complete purchases through these
-    platforms.
-  </p>
+    const sceneSite = document.getElementById('scene-site');
+    const dragLayer = document.getElementById('drag-layer');
+    const frameRect = sceneSite.getBoundingClientRect();
+    const imgRect = img.getBoundingClientRect();
 
-  <h2>9. Data Retention</h2>
+    img.style.position = 'absolute';
+    img.style.left = (imgRect.left - frameRect.left) + 'px';
+    img.style.top = (imgRect.top - frameRect.top) + 'px';
+    img.style.width = imgRect.width + 'px';
+    img.style.height = imgRect.height + 'px';
+    img.style.transform = 'none';
+    img.classList.add('dragging-icon');
+    dragLayer.appendChild(img);
 
-  <p>
-    Information stored locally by Noily remains on your device according
-    to the application's functionality and your device settings.
-  </p>
+    let companion = null, companionOffsetX = 0, companionOffsetY = 0, companionStartLeft = 0, companionStartTop = 0;
+    let badge = null;
+    let tutorialDoneForBadge = false;
+    try{ tutorialDoneForBadge = localStorage.getItem(TUTORIAL_DONE_KEY) === '1'; }catch(e){}
+    if(tutorialDoneForBadge){
+      if(getWeedSubstage() === 'dispose') badge = slot.querySelector('.collected-badge');
+      else if(getFruitSubstage() === 'sell') badge = slot.querySelector('.collected-badge-fruit');
+    } else {
+      slot.querySelectorAll('.collected-badge, .collected-badge-fruit').forEach(b => {
+        if(getComputedStyle(b).opacity !== '0') badge = b;
+      });
+    }
+    if(badge){
+      const badgeRect = badge.getBoundingClientRect();
+      companionStartLeft = badgeRect.left - frameRect.left;
+      companionStartTop = badgeRect.top - frameRect.top;
+      companionOffsetX = badgeRect.left - imgRect.left;
+      companionOffsetY = badgeRect.top - imgRect.top;
+      badge.style.position = 'absolute';
+      badge.style.left = companionStartLeft + 'px';
+      badge.style.top = companionStartTop + 'px';
+      badge.style.bottom = 'auto';
+      badge.style.margin = '0';
+      badge.style.transform = 'none';
+      badge.style.width = badgeRect.width + 'px';
+      badge.style.height = badgeRect.height + 'px';
+      dragLayer.appendChild(badge);
+      companion = badge;
+    }
 
-  <p>
-    Information processed by third-party services such as Google Analytics,
-    Firebase Crashlytics, or Google AdMob is subject to the respective
-    service's data retention policies.
-  </p>
+    dragState = {
+      img,
+      slot,
+      frameRect,
+      plantable: slot.dataset.plantable === 'true',
+      waterable: slot.dataset.waterable === 'true',
+      cutter: slot.dataset.cutter === 'true',
+      collector: slot.dataset.collect === 'true',
+      trashable: slot.dataset.trashable === 'true',
+      fertilizer: slot.dataset.fertilizer === 'true',
+      herbicide: slot.dataset.herbicide === 'true',
+      companion,
+      companionOffsetX,
+      companionOffsetY,
+      companionStartLeft,
+      companionStartTop,
+      offsetX: e.clientX - imgRect.left,
+      offsetY: e.clientY - imgRect.top
+    };
 
-  <h2>10. Data Deletion and Privacy Choices</h2>
+    window.addEventListener('pointermove', onDragMove);
+    window.addEventListener('pointerup', onDragEnd);
+    e.preventDefault();
+  }
 
-  <p>
-    You may remove locally stored Noily data by deleting the relevant
-    information within the application or uninstalling the application,
-    depending on the type of data.
-  </p>
+  function onDragMove(e){
+    if(!dragState) return;
+    const { img, frameRect, offsetX, offsetY, companion, companionOffsetX, companionOffsetY } = dragState;
+    const left = e.clientX - frameRect.left - offsetX;
+    const top = e.clientY - frameRect.top - offsetY;
+    img.style.left = left + 'px';
+    img.style.top = top + 'px';
+    if(companion){
+      companion.style.left = (left + companionOffsetX) + 'px';
+      companion.style.top = (top + companionOffsetY) + 'px';
+    }
+  }
 
-  <p>
-    Depending on your location and applicable law, you may have additional
-    rights regarding access, correction, deletion, or restriction of
-    personal information.
-  </p>
+  function rectsOverlap(a, b){
+    return !(a.right < b.left || a.left > b.right || a.bottom < b.top || a.top > b.bottom);
+  }
 
-  <p>
-    You may also manage certain advertising and privacy settings through
-    your device and Google settings.
-  </p>
+  function centerInRect(a, b){
+    const cx = a.left + a.width / 2;
+    const cy = a.top + a.height / 2;
+    return cx >= b.left && cx <= b.right && cy >= b.top && cy <= b.bottom;
+  }
 
-  <h2>11. Children's Privacy</h2>
+  function getEarthTargetRect(){
+    const rect = document.getElementById('hero-earth-img').getBoundingClientRect();
+    const fx0 = 0.1935, fx1 = 0.7787, fy0 = 0.40, fy1 = 0.7657;
+    const left = rect.left + rect.width * fx0;
+    const top = rect.top + rect.height * fy0;
+    const right = rect.left + rect.width * fx1;
+    const bottom = rect.top + rect.height * fy1;
+    return { left, top, right, bottom, width: right - left, height: bottom - top };
+  }
 
-  <p>
-    Noily does not knowingly collect personal information from children.
-    The application does not require users to create accounts or submit
-    personal information to use its core features.
-  </p>
+  function onDragEnd(){
+    if(!dragState) return;
+    const { img, slot, frameRect, plantable, waterable, cutter, collector, trashable, fertilizer, herbicide, companion, companionStartLeft, companionStartTop } = dragState;
+    window.removeEventListener('pointermove', onDragMove);
+    window.removeEventListener('pointerup', onDragEnd);
+    dragState = null;
 
-  <p>
-    If we become aware that personal information has been collected in a
-    manner that is not permitted by applicable law, we will take appropriate
-    steps to address the situation.
-  </p>
+    img.classList.remove('dragging-icon');
 
-  <h2>12. Security</h2>
+    const imgRect = img.getBoundingClientRect();
+    let companionConsumed = false;
 
-  <p>
-    We take reasonable measures to protect information processed through
-    Noily and the services we use. However, no method of electronic storage
-    or transmission is completely secure, and we cannot guarantee absolute
-    security.
-  </p>
+    if(plantable){
+      const earthRect = getEarthTargetRect();
+      if(centerInRect(imgRect, earthRect)){
+        img.remove();
+        plantSeed();
+        return;
+      }
+    }
 
-  <h2>13. Links to Other Websites</h2>
+    if(waterable){
+      const earthRect = getEarthTargetRect();
+      if(centerInRect(imgRect, earthRect)){
+        waterPlant();
+      }
+    }
 
-  <p>
-    Noily may provide links to third-party websites or services.
-    We are not responsible for the privacy practices of third-party websites.
-    We encourage you to review the privacy policies of those services.
-  </p>
+    let currentStage = 'done';
+    try{ currentStage = localStorage.getItem(STAGE_KEY) || 'done'; }catch(e){}
+    let tutorialDone = false;
+    try{ tutorialDone = localStorage.getItem(TUTORIAL_DONE_KEY) === '1'; }catch(e){}
+    const weedSub = tutorialDone ? getWeedSubstage() : null;
+    const fruitSub = tutorialDone ? getFruitSubstage() : null;
 
-  <h2>14. Changes to This Privacy Policy</h2>
+    if(cutter){
+      const isTijeras = slot.classList.contains('slot-tijeras');
+      const isHand = slot.classList.contains('slot-hand');
+      const weedReady = tutorialDone ? (weedSub === 'growing') : (currentStage === 'weed');
+      const fruitReady = tutorialDone ? (fruitSub === 'ready') : (currentStage === 'fruit');
+      if(isTijeras && weedReady){
+        const weedRect = document.getElementById('weed-sprite').getBoundingClientRect();
+        if(centerInRect(imgRect, weedRect)){
+          cutWeed();
+        }
+      }
+      if(isHand && fruitReady){
+        const fruitRect = document.getElementById('fruit-sprite').getBoundingClientRect();
+        if(centerInRect(imgRect, fruitRect)){
+          pickFruit();
+        }
+      }
+    }
 
-  <p>
-    We may update this Privacy Policy from time to time to reflect changes
-    to Noily, the services we use, or applicable legal requirements.
-  </p>
+    if(collector){
+      const poteEl = document.querySelector('.slot-pote');
+      const poteRect = poteEl.getBoundingClientRect();
+      if(rectsOverlap(imgRect, poteRect)){
+        let poteOccupied = false;
+        if(tutorialDone){
+          poteOccupied = (weedSub === 'dispose') || (fruitSub === 'sell');
+        } else {
+          poteEl.querySelectorAll('.collected-badge, .collected-badge-fruit').forEach(b => {
+            if(getComputedStyle(b).opacity !== '0') poteOccupied = true;
+          });
+        }
+        const weedInHand = tutorialDone ? (slot.id === 'weed-item' && weedSub === 'collect') : (currentStage === 'collect');
+        const fruitInHand = tutorialDone ? (slot.id === 'fruit-item' && fruitSub === 'collect') : (currentStage === 'fruitcollect');
+        if(!poteOccupied){
+          img.style.position = '';
+          img.style.left = '';
+          img.style.top = '';
+          img.style.width = '';
+          img.style.height = '';
+          img.style.transform = '';
+          img.style.opacity = '0';
+          slot.appendChild(img);
+          if(weedInHand){
+            const badge = poteEl.querySelector('.collected-badge');
+            if(badge) badge.style.opacity = '';
+            collectWeed();
+          } else if(fruitInHand){
+            const badgeFruit = poteEl.querySelector('.collected-badge-fruit');
+            if(badgeFruit) badgeFruit.style.opacity = '';
+            collectFruit();
+          }
+          return;
+        }
+      }
+    }
 
-  <p>
-    When changes are made, the "Last updated" date at the top of this page
-    will be updated.
-  </p>
+    function resetCompanion(){
+      if(!companion) return;
+      companion.style.transition = '';
+      companion.style.position = '';
+      companion.style.left = '';
+      companion.style.top = '';
+      companion.style.bottom = '';
+      companion.style.margin = '';
+      companion.style.transform = '';
+      companion.style.width = '';
+      companion.style.height = '';
+      companion.style.opacity = '0';
+      slot.appendChild(companion);
+    }
 
-  <h2>15. Contact Us</h2>
+    if(trashable){
+      const weedInPote = tutorialDone ? (weedSub === 'dispose') : (currentStage === 'dispose');
+      const fruitInPote = tutorialDone ? (fruitSub === 'sell') : (currentStage === 'sell');
+      if(weedInPote){
+        const trashRect = document.querySelector('.icon-trash').getBoundingClientRect();
+        if(rectsOverlap(imgRect, trashRect)){
+          resetCompanion();
+          companionConsumed = true;
+          disposeWeed();
+        }
+      } else if(fruitInPote){
+        const venderRect = document.querySelector('.icon-vender').getBoundingClientRect();
+        if(rectsOverlap(imgRect, venderRect)){
+          resetCompanion();
+          companionConsumed = true;
+          sellFruit();
+        }
+      }
+    }
 
-  <p>
-    If you have questions, concerns, or requests regarding this Privacy
-    Policy or Noily's privacy practices, you can contact us at:
-  </p>
+    if(fertilizer){
+      const earthRect = getEarthTargetRect();
+      if(centerInRect(imgRect, earthRect)){
+        img.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        img.style.transform = 'translateY(40px)';
+        img.style.opacity = '0';
+        img.addEventListener('transitionend', function onFade(){
+          img.removeEventListener('transitionend', onFade);
+          img.style.transition = '';
+          img.style.position = '';
+          img.style.left = '';
+          img.style.top = '';
+          img.style.width = '';
+          img.style.height = '';
+          img.style.transform = '';
+          img.style.opacity = '';
+          slot.querySelector('.icon-frame').appendChild(img);
+          growPlant();
+        });
+        return;
+      }
+    }
 
-  <p>
-    <strong>aris.studio.contacto@gmail.com</strong>
-  </p>
+    if(herbicide){
+      const earthRect = getEarthTargetRect();
+      if(centerInRect(imgRect, earthRect)){
+        useHierbador();
+        img.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        img.style.transform = 'translateY(40px)';
+        img.style.opacity = '0';
+        img.addEventListener('transitionend', function onFade(){
+          img.removeEventListener('transitionend', onFade);
+          img.style.transition = '';
+          img.style.position = '';
+          img.style.left = '';
+          img.style.top = '';
+          img.style.width = '';
+          img.style.height = '';
+          img.style.transform = '';
+          img.style.opacity = '';
+          slot.appendChild(img);
+        });
+        return;
+      }
+    }
+
+    if(companion && !companionConsumed){
+      companion.style.transition = 'left 0.3s ease, top 0.3s ease';
+      companion.style.left = companionStartLeft + 'px';
+      companion.style.top = companionStartTop + 'px';
+      companion.addEventListener('transitionend', function onCEnd(){
+        companion.removeEventListener('transitionend', onCEnd);
+        companion.style.transition = '';
+        companion.style.position = '';
+        companion.style.left = '';
+        companion.style.top = '';
+        companion.style.bottom = '';
+        companion.style.margin = '';
+        companion.style.transform = '';
+        companion.style.width = '';
+        companion.style.height = '';
+        slot.appendChild(companion);
+      });
+    }
+
+    const slotRect = slot.getBoundingClientRect();
+    const imgWidth = parseFloat(img.style.width);
+    const imgHeight = parseFloat(img.style.height);
+    const targetLeft = (slotRect.left + slotRect.width / 2) - frameRect.left - imgWidth / 2;
+    const targetTop = (slotRect.top + slotRect.height / 2) - frameRect.top - imgHeight / 2;
+
+    img.style.transition = 'left 0.3s ease, top 0.3s ease';
+    img.style.left = targetLeft + 'px';
+    img.style.top = targetTop + 'px';
+
+    img.addEventListener('transitionend', function onEnd(){
+      img.removeEventListener('transitionend', onEnd);
+      img.style.transition = '';
+      img.style.position = '';
+      img.style.left = '';
+      img.style.top = '';
+      img.style.width = '';
+      img.style.height = '';
+      img.style.transform = '';
+      slot.appendChild(img);
+    });
+  }
+
+  const STAGE_KEY = 'nuestrasemilla:stage';
+  const STAGES = ['stage-seed', 'stage-water', 'stage-weed', 'stage-collect', 'stage-dispose', 'stage-nutrient', 'stage-fase0grow', 'stage-fase1grow', 'stage-fase2grow', 'stage-fase3grow', 'stage-fruit', 'stage-fruitcollect', 'stage-sell', 'stage-sold', 'stage-hierbadorinfo', 'stage-closing1', 'stage-closing2', 'stage-done'];
+
+  function setStage(stage){
+    const site = document.getElementById('scene-site');
+    site.classList.remove(...STAGES);
+    site.classList.add('stage-' + stage);
+    try{ localStorage.setItem(STAGE_KEY, stage); }catch(e){}
+  }
+
+  function plantSeed(){
+    document.getElementById('hero-earth-img').src = 'TierraConSemilla.PNG';
+    let tutorialDone = false;
+    try{ tutorialDone = localStorage.getItem(TUTORIAL_DONE_KEY) === '1'; }catch(e){}
+    if(tutorialDone){
+      const weedSubOnPlant = getWeedSubstage();
+      if(weedSubOnPlant !== 'collect' && weedSubOnPlant !== 'dispose'){
+        setWeedSubstage('none');
+      }
+      const fruitSubOnPlant = getFruitSubstage();
+      if(fruitSubOnPlant !== 'collect' && fruitSubOnPlant !== 'sell'){
+        setFruitSubstage('none');
+      }
+      try{
+        localStorage.setItem(WEED_CHECK_KEY, String(Date.now()));
+        localStorage.setItem(FRUIT_CHECK_KEY, String(Date.now()));
+      }catch(e){}
+    }
+    setStage('water');
+    if(tutorialDone){
+      scheduleWeedCheck();
+      scheduleFruitCheck();
+    }
+  }
+
+  function waterPlant(){
+    const splash = document.getElementById('water-splash');
+    splash.classList.add('show');
+    setTimeout(() => splash.classList.remove('show'), 700);
+
+    startWaterDrain();
+
+    let stage = 'done';
+    try{ stage = localStorage.getItem(STAGE_KEY) || 'done'; }catch(e){}
+    if(stage === 'water'){
+      let tutorialDone = false;
+      try{ tutorialDone = localStorage.getItem(TUTORIAL_DONE_KEY) === '1'; }catch(e){}
+      setTimeout(() => {
+        if(tutorialDone){
+          startRealGrowthCycle();
+        } else {
+          setStage('weed');
+        }
+      }, 1000);
+    }
+  }
+
+  function cutWeed(){
+    const weedItemImg = document.querySelector('#weed-item img');
+    if(weedItemImg) weedItemImg.style.opacity = '';
+    let tutorialDone = false;
+    try{ tutorialDone = localStorage.getItem(TUTORIAL_DONE_KEY) === '1'; }catch(e){}
+    if(tutorialDone){
+      setWeedSubstage('collect');
+    } else {
+      setStage('collect');
+    }
+  }
+
+  function collectWeed(){
+    let tutorialDone = false;
+    try{ tutorialDone = localStorage.getItem(TUTORIAL_DONE_KEY) === '1'; }catch(e){}
+    if(tutorialDone){
+      setWeedSubstage('dispose');
+    } else {
+      setStage('dispose');
+    }
+  }
+
+  function disposeWeed(){
+    let tutorialDone = false;
+    try{ tutorialDone = localStorage.getItem(TUTORIAL_DONE_KEY) === '1'; }catch(e){}
+    if(tutorialDone){
+      setWeedSubstage('none');
+      try{ localStorage.setItem(WEED_CHECK_KEY, String(Date.now())); }catch(e){}
+      scheduleWeedCheck();
+      return;
+    }
+    let stage = 'done';
+    try{ stage = localStorage.getItem(STAGE_KEY) || 'done'; }catch(e){}
+    if(stage === 'dispose'){
+      setTimeout(() => {
+        setNutrientQty(1);
+        setStage('nutrient');
+      }, 1000);
+    }
+  }
+
+  const WATER_DURATION = 7 * 60 * 1000;
+  const WATER_LAST_KEY = 'nuestrasemilla:waterLastAt';
+  const WATER_LEVEL_KEY = 'nuestrasemilla:waterLevel';
+
+  function getWaterRate(){
+    return (getWeedSubstage() === 'growing') ? 19 : 1;
+  }
+
+  function getWaterPct(){
+    let level = null, at = null;
+    try{
+      const lv = localStorage.getItem(WATER_LEVEL_KEY);
+      level = (lv === null) ? null : parseFloat(lv);
+      at = parseInt(localStorage.getItem(WATER_LAST_KEY), 10) || null;
+    }catch(e){}
+    if(level === null || isNaN(level) || !at) return 0;
+    const drained = ((Date.now() - at) / WATER_DURATION) * 100 * getWaterRate();
+    return Math.max(0, Math.min(100, level - drained));
+  }
+
+  function getWaterDryAt(){
+    let level = null, at = null;
+    try{
+      const lv = localStorage.getItem(WATER_LEVEL_KEY);
+      level = (lv === null) ? null : parseFloat(lv);
+      at = parseInt(localStorage.getItem(WATER_LAST_KEY), 10) || null;
+    }catch(e){}
+    if(level === null || isNaN(level) || !at) return null;
+    return at + (level / 100) * WATER_DURATION / getWaterRate();
+  }
+
+  function snapshotWaterLevel(){
+    const pct = getWaterPct();
+    try{
+      localStorage.setItem(WATER_LEVEL_KEY, String(pct));
+      localStorage.setItem(WATER_LAST_KEY, String(Date.now()));
+    }catch(e){}
+  }
+
+  function applyWaterFill(){
+    const fill = document.getElementById('water-fill');
+    const pct = getWaterPct();
+    if(pct <= 0){
+      fill.style.transition = 'none';
+      fill.style.width = '0%';
+      return;
+    }
+    const dryAt = getWaterDryAt();
+    const remainingMs = dryAt ? Math.max(0, dryAt - Date.now()) : 0;
+    fill.style.transition = 'none';
+    fill.style.width = pct + '%';
+    void fill.offsetWidth;
+    fill.style.transition = 'width ' + (remainingMs / 1000) + 's linear';
+    fill.style.width = '0%';
+  }
+
+  const WATER_DEATH_DURATION = 25 * 60 * 1000;
+  let waterDryTimer = null;
+  let waterDeathTimer = null;
+
+  function isWaterDry(){
+    let at = null;
+    try{ at = parseInt(localStorage.getItem(WATER_LAST_KEY), 10) || null; }catch(e){}
+    if(!at) return false;
+    return getWaterPct() <= 0;
+  }
+
+  function pauseGrowthForDryness(){
+    let stage = 'done';
+    try{ stage = localStorage.getItem(STAGE_KEY) || 'done'; }catch(e){}
+    if(stage === 'fase0grow' && fase0Timer){ clearTimeout(fase0Timer); fase0Timer = null; }
+    if(stage === 'fase1grow' && fase1Timer){ clearTimeout(fase1Timer); fase1Timer = null; }
+    if(stage === 'fase2grow' && fase2Timer){ clearTimeout(fase2Timer); fase2Timer = null; }
+  }
+
+  function resumeGrowthAfterWatering(dryDurationMs){
+    if(dryDurationMs <= 0) return;
+    let stage = 'done';
+    try{ stage = localStorage.getItem(STAGE_KEY) || 'done'; }catch(e){}
+    let key = null;
+    if(stage === 'fase0grow') key = FASE0_START_KEY;
+    else if(stage === 'fase1grow') key = FASE1_START_KEY;
+    else if(stage === 'fase2grow') key = FASE2_START_KEY;
+    if(!key) return;
+    let start = null;
+    try{ start = parseInt(localStorage.getItem(key), 10) || null; }catch(e){}
+    if(start === null) return;
+    try{ localStorage.setItem(key, String(start + dryDurationMs)); }catch(e){}
+    if(stage === 'fase0grow') scheduleFase0Resolution();
+    else if(stage === 'fase1grow') scheduleFase1Resolution();
+    else if(stage === 'fase2grow') scheduleFase2Resolution();
+  }
+
+  function scheduleWaterDryCheck(){
+    if(waterDryTimer){ clearTimeout(waterDryTimer); waterDryTimer = null; }
+    if(waterDeathTimer){ clearTimeout(waterDeathTimer); waterDeathTimer = null; }
+    if(!isPlantActive()) return;
+    const dryAt = getWaterDryAt();
+    if(dryAt === null) return;
+    const untilDry = dryAt - Date.now();
+    if(untilDry > 0){
+      waterDryTimer = setTimeout(onWaterDry, untilDry);
+    } else {
+      onWaterDry();
+    }
+  }
+
+  function onWaterDry(){
+    waterDryTimer = null;
+    pauseGrowthForDryness();
+    scheduleWaterDeathCheck();
+  }
+
+  function scheduleWaterDeathCheck(){
+    if(waterDeathTimer){ clearTimeout(waterDeathTimer); waterDeathTimer = null; }
+    if(!isPlantActive()) return;
+    const dryAt = getWaterDryAt();
+    if(dryAt === null) return;
+    const remaining = (dryAt + WATER_DEATH_DURATION) - Date.now();
+    if(remaining <= 0){ killPlantFromThirst(); return; }
+    waterDeathTimer = setTimeout(killPlantFromThirst, remaining);
+  }
+
+  function killPlantFromThirst(){
+    waterDeathTimer = null;
+    if(!isPlantActive()) return;
+    resetGardenForNewSeed();
+  }
+
+  function startWaterDrain(){
+    const wasDry = isWaterDry();
+    let dryDuration = 0;
+    if(wasDry){
+      const prevDryAt = getWaterDryAt();
+      if(prevDryAt !== null) dryDuration = Date.now() - prevDryAt;
+    }
+    try{
+      localStorage.setItem(WATER_LEVEL_KEY, '100');
+      localStorage.setItem(WATER_LAST_KEY, String(Date.now()));
+    }catch(e){}
+    applyWaterFill();
+    if(wasDry && dryDuration > 0){
+      resumeGrowthAfterWatering(dryDuration);
+    }
+    scheduleWaterDryCheck();
+  }
+
+  const FASE0_DURATION = 3 * 60 * 1000;
+  const FASE1_DURATION = 5 * 60 * 1000;
+  const FASE2_DURATION = 6 * 60 * 1000;
+  const NUTRIENT_TIME_REDUCTION = 2.5 * 60 * 1000;
+  const FASE0_START_KEY = 'nuestrasemilla:fase0Start';
+  const FASE1_START_KEY = 'nuestrasemilla:fase1Start';
+  const FASE2_START_KEY = 'nuestrasemilla:fase2Start';
+  const SPECIES_KEY = 'nuestrasemilla:species';
+  const SPECIES_LIST = ['girasol', 'cactus', 'poliamarilla', 'chiquitina', 'callampin', 'rosadorada'];
+  const SPECIES_WEIGHTS = [0.45, 0.15, 0.30, 0.05, 0.049, 0.001];
+
+  function rollSpecies(){
+    const r = Math.random();
+    let acc = 0;
+    for(let i = 0; i < SPECIES_LIST.length; i++){
+      acc += SPECIES_WEIGHTS[i];
+      if(r < acc) return SPECIES_LIST[i];
+    }
+    return SPECIES_LIST[SPECIES_LIST.length - 1];
+  }
+  const PLANT_GROWN_KEY = 'nuestrasemilla:plantGrown';
+  const TUTORIAL_DONE_KEY = 'nuestrasemilla:tutorialDone';
+  let fase0Timer = null;
+  let fase1Timer = null;
+  let fase2Timer = null;
+
+  /* ---------- Random weed/fruit events (post-tutorial only) ----------
+     Every WEED_CHECK_INTERVAL / FRUIT_CHECK_INTERVAL, roll a dice for whether
+     a weed/fruit spontaneously appears, using the probability for the plant's
+     CURRENT growth phase (0=just planted, 1/2/3=fase1/2/3grow). Independent
+     of the main growth stage and of each other; only one weed and one fruit
+     can be pending at a time. */
+  const WEED_CHECK_INTERVAL = 20 * 1000;
+  const FRUIT_CHECK_INTERVAL = 16 * 1000;
+  const WEED_CHECK_KEY = 'nuestrasemilla:weedCheckAt';
+  const FRUIT_CHECK_KEY = 'nuestrasemilla:fruitCheckAt';
+  const WEED_SUBSTAGE_KEY = 'nuestrasemilla:weedSubstage';
+  const FRUIT_SUBSTAGE_KEY = 'nuestrasemilla:fruitSubstage';
+  const WEED_PROB_BY_PHASE = [0.90, 0.80, 0.65, 0.30];
+  const FRUIT_PROB_BY_PHASE = [0.25, 0.55, 0.75, 0.95];
+  let weedCheckTimer = null;
+  let fruitCheckTimer = null;
+
+  function getGrowthPhaseIndex(){
+    let stage = 'seed';
+    try{ stage = localStorage.getItem(STAGE_KEY) || 'seed'; }catch(e){}
+    if(stage === 'fase1grow') return 1;
+    if(stage === 'fase2grow') return 2;
+    if(stage === 'fase3grow' || stage === 'done') return 3;
+    return 0;
+  }
+
+  function isPlantActive(){
+    let stage = 'seed';
+    try{ stage = localStorage.getItem(STAGE_KEY) || 'seed'; }catch(e){}
+    let tutorialDone = false;
+    try{ tutorialDone = localStorage.getItem(TUTORIAL_DONE_KEY) === '1'; }catch(e){}
+    return tutorialDone && stage !== 'seed';
+  }
+
+  function getWeedSubstage(){
+    try{ return localStorage.getItem(WEED_SUBSTAGE_KEY) || 'none'; }catch(e){ return 'none'; }
+  }
+  function getFruitSubstage(){
+    try{ return localStorage.getItem(FRUIT_SUBSTAGE_KEY) || 'none'; }catch(e){ return 'none'; }
+  }
+  function setWeedSubstage(v){
+    const site = document.getElementById('scene-site');
+    let hadWater = false;
+    try{ hadWater = localStorage.getItem(WATER_LAST_KEY) !== null; }catch(e){}
+    if(hadWater) snapshotWaterLevel();
+    site.classList.remove('wsub-none', 'wsub-growing', 'wsub-collect', 'wsub-dispose');
+    site.classList.add('wsub-' + v);
+    try{ localStorage.setItem(WEED_SUBSTAGE_KEY, v); }catch(e){}
+    if(hadWater){
+      applyWaterFill();
+      scheduleWaterDryCheck();
+    }
+  }
+  function setFruitSubstage(v){
+    const site = document.getElementById('scene-site');
+    site.classList.remove('fsub-none', 'fsub-ready', 'fsub-collect', 'fsub-sell');
+    site.classList.add('fsub-' + v);
+    try{ localStorage.setItem(FRUIT_SUBSTAGE_KEY, v); }catch(e){}
+  }
+
+  function scheduleWeedCheck(){
+    if(weedCheckTimer){ clearTimeout(weedCheckTimer); weedCheckTimer = null; }
+    if(!isPlantActive()) return;
+    let start = Date.now();
+    try{ start = parseInt(localStorage.getItem(WEED_CHECK_KEY), 10) || Date.now(); }catch(e){}
+    const remaining = Math.max(0, WEED_CHECK_INTERVAL - (Date.now() - start));
+    weedCheckTimer = setTimeout(runWeedCheck, remaining);
+  }
+
+  function runWeedCheck(){
+    weedCheckTimer = null;
+    if(!isPlantActive()) return;
+    let start = Date.now();
+    try{ start = parseInt(localStorage.getItem(WEED_CHECK_KEY), 10) || Date.now(); }catch(e){}
+    const elapsed = Date.now() - start;
+    const rolls = Math.max(1, Math.floor(elapsed / WEED_CHECK_INTERVAL));
+    for(let i = 0; i < rolls; i++){
+      if(getWeedSubstage() !== 'none' || isHierbadorActive()) break;
+      const prob = WEED_PROB_BY_PHASE[getGrowthPhaseIndex()];
+      if(Math.random() < prob){ setWeedSubstage('growing'); break; }
+    }
+    try{ localStorage.setItem(WEED_CHECK_KEY, String(start + rolls * WEED_CHECK_INTERVAL)); }catch(e){}
+    scheduleWeedCheck();
+  }
+
+  function scheduleFruitCheck(){
+    if(fruitCheckTimer){ clearTimeout(fruitCheckTimer); fruitCheckTimer = null; }
+    if(!isPlantActive()) return;
+    let start = Date.now();
+    try{ start = parseInt(localStorage.getItem(FRUIT_CHECK_KEY), 10) || Date.now(); }catch(e){}
+    const remaining = Math.max(0, FRUIT_CHECK_INTERVAL - (Date.now() - start));
+    fruitCheckTimer = setTimeout(runFruitCheck, remaining);
+  }
+
+  function runFruitCheck(){
+    fruitCheckTimer = null;
+    if(!isPlantActive()) return;
+    let start = Date.now();
+    try{ start = parseInt(localStorage.getItem(FRUIT_CHECK_KEY), 10) || Date.now(); }catch(e){}
+    const elapsed = Date.now() - start;
+    const rolls = Math.max(1, Math.floor(elapsed / FRUIT_CHECK_INTERVAL));
+    for(let i = 0; i < rolls; i++){
+      if(getFruitSubstage() !== 'none' || isWaterDry()) break;
+      const prob = FRUIT_PROB_BY_PHASE[getGrowthPhaseIndex()];
+      if(Math.random() < prob){ setFruitSubstage('ready'); break; }
+    }
+    try{ localStorage.setItem(FRUIT_CHECK_KEY, String(start + rolls * FRUIT_CHECK_INTERVAL)); }catch(e){}
+    scheduleFruitCheck();
+  }
+
+  function growPlant(){
+    setNutrientQty(Math.max(0, nutrientQty - 1));
+    let stage = 'done';
+    try{ stage = localStorage.getItem(STAGE_KEY) || 'done'; }catch(e){}
+    let tutorialDone = false;
+    try{ tutorialDone = localStorage.getItem(TUTORIAL_DONE_KEY) === '1'; }catch(e){}
+    if(!tutorialDone && stage === 'nutrient'){
+      setStage('fase1grow');
+      setTimeout(() => {
+        let curStage = 'done';
+        try{ curStage = localStorage.getItem(STAGE_KEY) || 'done'; }catch(e){}
+        if(curStage === 'fase1grow') setStage('fruit');
+      }, 1000);
+    } else if(stage === 'nutrient' || stage === 'done'){
+      startRealGrowthCycle();
+    } else if(stage === 'fase0grow' || stage === 'fase1grow' || stage === 'fase2grow'){
+      reduceCurrentFaseTime(NUTRIENT_TIME_REDUCTION);
+    }
+  }
+
+  function reduceCurrentFaseTime(ms){
+    let stage = 'done';
+    try{ stage = localStorage.getItem(STAGE_KEY) || 'done'; }catch(e){}
+    let key = null, scheduleFn = null;
+    if(stage === 'fase0grow'){ key = FASE0_START_KEY; scheduleFn = scheduleFase0Resolution; }
+    else if(stage === 'fase1grow'){ key = FASE1_START_KEY; scheduleFn = scheduleFase1Resolution; }
+    else if(stage === 'fase2grow'){ key = FASE2_START_KEY; scheduleFn = scheduleFase2Resolution; }
+    if(!key) return;
+    let start = null;
+    try{ start = parseInt(localStorage.getItem(key), 10) || null; }catch(e){}
+    if(start === null) return;
+    try{ localStorage.setItem(key, String(start - ms)); }catch(e){}
+    scheduleFn();
+  }
+
+  function scheduleFase0Resolution(){
+    if(fase0Timer) clearTimeout(fase0Timer);
+    fase0Timer = null;
+    if(isWaterDry()) return;
+    let start = Date.now();
+    try{ start = parseInt(localStorage.getItem(FASE0_START_KEY), 10) || Date.now(); }catch(e){}
+    const remaining = Math.max(0, FASE0_DURATION - (Date.now() - start));
+    fase0Timer = setTimeout(resolveFase0, remaining);
+  }
+
+  function resolveFase0(){
+    fase0Timer = null;
+    let stage = 'done';
+    try{ stage = localStorage.getItem(STAGE_KEY) || 'done'; }catch(e){}
+    if(stage !== 'fase0grow') return;
+    try{ localStorage.setItem(FASE1_START_KEY, String(Date.now())); }catch(e){}
+    setStage('fase1grow');
+    scheduleFase1Resolution();
+  }
+
+  function scheduleFase1Resolution(){
+    if(fase1Timer) clearTimeout(fase1Timer);
+    fase1Timer = null;
+    if(isWaterDry()) return;
+    let start = Date.now();
+    try{ start = parseInt(localStorage.getItem(FASE1_START_KEY), 10) || Date.now(); }catch(e){}
+    const remaining = Math.max(0, FASE1_DURATION - (Date.now() - start));
+    fase1Timer = setTimeout(resolveFase1, remaining);
+  }
+
+  function resolveFase1(){
+    fase1Timer = null;
+    let stage = 'done';
+    try{ stage = localStorage.getItem(STAGE_KEY) || 'done'; }catch(e){}
+    if(stage !== 'fase1grow') return;
+    let species = null;
+    try{ species = localStorage.getItem(SPECIES_KEY); }catch(e){}
+    if(!species){
+      species = rollSpecies();
+      try{ localStorage.setItem(SPECIES_KEY, species); }catch(e){}
+    }
+    applySpeciesSprite(species);
+    try{ localStorage.setItem(FASE2_START_KEY, String(Date.now())); }catch(e){}
+    setStage('fase2grow');
+    scheduleFase2Resolution();
+  }
+
+  function applySpeciesSprite(species){
+    SPECIES_LIST.forEach(s => {
+      const el = document.querySelector('.fase2-' + s);
+      if(el) el.style.display = (s === species) ? '' : 'none';
+    });
+  }
+
+  function scheduleFase2Resolution(){
+    if(fase2Timer) clearTimeout(fase2Timer);
+    fase2Timer = null;
+    if(isWaterDry()) return;
+    let start = Date.now();
+    try{ start = parseInt(localStorage.getItem(FASE2_START_KEY), 10) || Date.now(); }catch(e){}
+    const remaining = Math.max(0, FASE2_DURATION - (Date.now() - start));
+    fase2Timer = setTimeout(resolveFase2, remaining);
+  }
+
+  function resolveFase2(){
+    fase2Timer = null;
+    let stage = 'done';
+    try{ stage = localStorage.getItem(STAGE_KEY) || 'done'; }catch(e){}
+    if(stage !== 'fase2grow') return;
+    let species = 'girasol';
+    try{ species = localStorage.getItem(SPECIES_KEY) || 'girasol'; }catch(e){}
+    applyFinalPhaseSprite(species);
+    document.getElementById('scene-site').classList.add('plant-grown');
+    try{ localStorage.setItem(PLANT_GROWN_KEY, '1'); }catch(e){}
+    setStage('done');
+  }
+
+  function applyFinalPhaseSprite(species){
+    SPECIES_LIST.forEach(s => {
+      const el = document.querySelector('.fase3-' + s);
+      if(el) el.style.display = (s === species) ? '' : 'none';
+    });
+  }
+
+  document.addEventListener('visibilitychange', function(){
+    if(!document.hidden){
+      let stage = 'done';
+      try{ stage = localStorage.getItem(STAGE_KEY) || 'done'; }catch(e){}
+      if(stage === 'fase0grow') scheduleFase0Resolution();
+      if(stage === 'fase1grow') scheduleFase1Resolution();
+      if(stage === 'fase2grow') scheduleFase2Resolution();
+      scheduleWeedCheck();
+      scheduleFruitCheck();
+      scheduleHierbadorExpiry();
+      applyWaterFill();
+      scheduleWaterDryCheck();
+    }
+  });
+
+
+  function pickFruit(){
+    const fruitItemImg = document.querySelector('#fruit-item img');
+    if(fruitItemImg) fruitItemImg.style.opacity = '';
+    let tutorialDone = false;
+    try{ tutorialDone = localStorage.getItem(TUTORIAL_DONE_KEY) === '1'; }catch(e){}
+    if(tutorialDone){
+      setFruitSubstage('collect');
+    } else {
+      setStage('fruitcollect');
+    }
+  }
+
+  function collectFruit(){
+    let tutorialDone = false;
+    try{ tutorialDone = localStorage.getItem(TUTORIAL_DONE_KEY) === '1'; }catch(e){}
+    if(tutorialDone){
+      setFruitSubstage('sell');
+    } else {
+      setStage('sell');
+    }
+  }
+
+  function startRealGrowthCycle(){
+    try{ localStorage.setItem(FASE0_START_KEY, String(Date.now())); }catch(e){}
+    setStage('fase0grow');
+    scheduleFase0Resolution();
+  }
+
+  function sellFruit(){
+    setCoins(coins + 1);
+    let tutorialDone = false;
+    try{ tutorialDone = localStorage.getItem(TUTORIAL_DONE_KEY) === '1'; }catch(e){}
+    if(tutorialDone){
+      setFruitSubstage('none');
+      try{ localStorage.setItem(FRUIT_CHECK_KEY, String(Date.now())); }catch(e){}
+      scheduleFruitCheck();
+    } else {
+      setStage('sold');
+    }
+  }
+
+  function finishSale(){
+    setStage('hierbadorinfo');
+  }
+
+  function finishHierbadorInfo(){
+    setStage('closing1');
+  }
+
+  function advanceClosing(){
+    setStage('closing2');
+  }
+
+  function finishTutorial(){
+    try{ localStorage.setItem(TUTORIAL_DONE_KEY, '1'); }catch(e){}
+    document.getElementById('scene-site').classList.add('tutorial-done');
+    setWeedSubstage('none');
+    setFruitSubstage('none');
+    try{
+      localStorage.setItem(WEED_CHECK_KEY, String(Date.now()));
+      localStorage.setItem(FRUIT_CHECK_KEY, String(Date.now()));
+    }catch(e){}
+    startRealGrowthCycle();
+    scheduleWeedCheck();
+    scheduleFruitCheck();
+  }
+
+  (function applyGardenState(){
+    let stage = 'seed';
+    try{ stage = localStorage.getItem(STAGE_KEY) || 'seed'; }catch(e){}
+    const site = document.getElementById('scene-site');
+    const earthImg = document.getElementById('hero-earth-img');
+    site.classList.remove(...STAGES);
+    site.classList.add('stage-' + stage);
+    let plantGrown = false;
+    try{ plantGrown = localStorage.getItem(PLANT_GROWN_KEY) === '1'; }catch(e){}
+    site.classList.toggle('plant-grown', plantGrown);
+    let tutorialDone = false;
+    try{ tutorialDone = localStorage.getItem(TUTORIAL_DONE_KEY) === '1'; }catch(e){}
+    site.classList.toggle('tutorial-done', tutorialDone);
+    earthImg.src = (stage === 'seed') ? 'Tierra.PNG' : 'TierraConSemilla.PNG';
+    applyWaterFill();
+    scheduleWaterDryCheck();
+
+    if(stage === 'fase0grow'){
+      scheduleFase0Resolution();
+    }
+    if(stage === 'fase1grow'){
+      scheduleFase1Resolution();
+    }
+    if(stage === 'fase2grow'){
+      scheduleFase2Resolution();
+    }
+    const grownStages = ['fase2grow', 'fase3grow', 'fruit', 'fruitcollect', 'sell', 'sold', 'closing1', 'closing2', 'done'];
+    if(grownStages.includes(stage)){
+      let savedSpecies = null;
+      try{ savedSpecies = localStorage.getItem(SPECIES_KEY); }catch(e){}
+      applySpeciesSprite(savedSpecies || 'girasol');
+    }
+    const finalStages = ['fase3grow', 'fruit', 'fruitcollect', 'sell', 'sold', 'closing1', 'closing2', 'done'];
+    if(finalStages.includes(stage)){
+      let savedSpecies = null;
+      try{ savedSpecies = localStorage.getItem(SPECIES_KEY); }catch(e){}
+      applyFinalPhaseSprite(savedSpecies || 'girasol');
+    }
+
+    let savedCoins = 0;
+    try{ savedCoins = parseInt(localStorage.getItem(COINS_KEY), 10) || 0; }catch(e){}
+    setCoins(savedCoins);
+
+    let savedQty = null;
+    try{
+      const raw = localStorage.getItem(NUTRIENT_KEY);
+      savedQty = (raw === null) ? null : parseInt(raw, 10);
+    }catch(e){}
+    if(savedQty === null){
+      savedQty = (stage === 'nutrient') ? 1 : 0;
+    }
+    setNutrientQty(savedQty);
+
+    let savedHierbadorQty = 0;
+    try{ savedHierbadorQty = parseInt(localStorage.getItem(HIERBADOR_KEY), 10) || 0; }catch(e){}
+    setHierbadorQty(savedHierbadorQty);
+
+    renderCollection();
+
+    site.classList.add('wsub-' + getWeedSubstage());
+    site.classList.add('fsub-' + getFruitSubstage());
+    if(isPlantActive()){
+      scheduleWeedCheck();
+      scheduleFruitCheck();
+    }
+
+    let hierbadorActiveAt = null;
+    try{ hierbadorActiveAt = localStorage.getItem(HIERBADOR_ACTIVE_KEY); }catch(e){}
+    if(hierbadorActiveAt){
+      site.classList.add('hierbador-active');
+      scheduleHierbadorExpiry();
+    }
+  })();
+
+  document.querySelectorAll('.gallery-bar .slot, .seed-drag, .weed-item, .fruit-item, .hierbador-icon').forEach(slot => {
+    slot.addEventListener('pointerdown', onDragStart);
+  });
+</script>
 
 </body>
 </html>

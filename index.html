@@ -53,7 +53,7 @@ a {
 
   <h1>Noily Privacy Policy</h1>
 
-  <p class="updated"><strong>Last updated:</strong> September 2, 2026</p>
+  <p class="updated"><strong>Last updated:</strong> November 5, 2026</p>
 
   <p>
     Noily is developed and operated by TCnology.
@@ -93,6 +93,7 @@ a {
     <li>Challenge settings.</li>
     <li>Timer settings.</li>
     <li>Calendar Alarm settings.</li>
+    <li>Optional photos and messages you attach to an alarm (see Photos below).</li>
     <li>Streak-related information.</li>
     <li>Application preferences and settings.</li>
   </ul>
@@ -113,23 +114,73 @@ a {
     Firebase Crashlytics, or Google AdMob as part of its normal operation.
   </p>
 
-  <h2>3. Permissions</h2>
+  <h2>3. Photos</h2>
 
   <p>
-    Noily may request certain device permissions that are necessary to provide
-    its functionality. Depending on the platform and device, these may include
-    permissions related to notifications, alarms, sound, vibration, and
-    background operation.
+    Noily lets you optionally attach a photo to an alarm, shown when the alarm
+    rings. You choose the photo yourself from your photo library. Noily saves a
+    resized copy inside the app's private storage on your device.
   </p>
 
   <p>
-    These permissions are used to allow Noily to schedule and deliver alarms,
-    display notifications, play alarm sounds, and provide other features of
-    the application. Noily does not use these permissions to collect
-    unnecessary personal information.
+    Photos are never uploaded, sent to our servers, or shared with third
+    parties. You can remove a photo by removing it from the alarm, deleting
+    the alarm, or uninstalling the app. On supported Android versions the
+    system photo picker is used, so Noily does not receive access to your
+    whole library. In some features, a photo may be unlocked by watching a
+    rewarded advertisement (see Advertising).
   </p>
 
-  <h2>4. Advertising</h2>
+  <h2>4. Sensors and Camera</h2>
+
+  <p>
+    Some alarm challenges use your device's sensors:
+  </p>
+
+  <ul>
+    <li>The Shake challenge reads the accelerometer to detect shaking.</li>
+    <li>
+      The Light challenge reads the ambient light sensor on Android. On iOS it
+      uses the camera only to estimate surrounding brightness, and asks for
+      camera permission the first time it is needed.
+    </li>
+  </ul>
+
+  <p>
+    Sensor and camera data is processed on your device in real time only to
+    run the challenge. Noily does not record, save, or send images, video, or
+    sensor readings.
+  </p>
+
+  <h2>5. Permissions</h2>
+
+  <p>
+    Noily requests or declares only the permissions needed to deliver alarms
+    reliably. Depending on your platform and device, these may include:
+  </p>
+
+  <ul>
+    <li><strong>Notifications</strong> — to show alarm and timer notifications (asked at runtime on Android 13+ and iOS).</li>
+    <li><strong>Exact alarms</strong> — so alarms ring at the exact time you set.</li>
+    <li><strong>Full-screen alerts</strong> — to show the ringing screen over the lock screen; on newer Android versions this may require your approval in system settings.</li>
+    <li><strong>Foreground service (media playback)</strong> — to keep the alarm sound playing while it rings.</li>
+    <li><strong>Wake lock and vibration</strong> — to wake the screen and vibrate.</li>
+    <li><strong>Audio settings</strong> — to raise the alarm volume to the minimum level you chose while an alarm is ringing.</li>
+    <li><strong>Run at startup</strong> — to re-schedule your alarms after the device restarts.</li>
+    <li><strong>Internet and network state</strong> — used by advertising, analytics, crash reporting, and purchases.</li>
+    <li><strong>Advertising ID</strong> — used by Google AdMob on Android (see Advertising).</li>
+    <li><strong>Camera (iOS only)</strong> — only for the Light challenge.</li>
+    <li><strong>Photo library</strong> — only when you choose a photo for an alarm.</li>
+  </ul>
+
+  <p>
+    Noily does not use these permissions to collect unnecessary personal
+    information. If you deny a permission, related features such as alarms
+    ringing on time or showing notifications may not work correctly. You can
+    change permissions at any time in your device settings.
+  </p>
+
+  <h2>6. Advertising</h2>
 
   <p>
     The free version of Noily may display advertisements on supported
@@ -145,9 +196,21 @@ a {
   </p>
 
   <p>
-    Where required by applicable law, users may be presented with privacy
-    and consent choices regarding advertising and the processing of
-    information for advertising purposes.
+    On Android, Noily declares and uses the Google advertising ID for
+    advertising. You can reset or delete your advertising ID, or opt out of
+    ads personalization, in your device's Google settings.
+  </p>
+
+  <p>
+    Where required by applicable law, Noily shows Google's consent form
+    (User Messaging Platform) regarding advertising. You can review your
+    choices later in the app under Settings, in the privacy options.
+  </p>
+
+  <p>
+    Noily may show rewarded advertisements that you choose to watch in order
+    to unlock certain features, such as adding a photo to an alarm or
+    activating alarms. Noily may also show interstitial advertisements.
   </p>
 
   <p>
@@ -159,7 +222,7 @@ a {
     of Noily.
   </p>
 
-  <h2>5. Analytics</h2>
+  <h2>7. Analytics</h2>
 
   <p>
     Noily uses Google Analytics for Firebase to understand how users interact
@@ -176,9 +239,17 @@ a {
   </ul>
 
   <p>
+    Analytics and crash reporting are enabled by default in the released
+    version of Noily. Noily does not currently provide an in-app switch to
+    turn them off separately; you can limit data collection through your
+    device's privacy and Google settings, or by uninstalling the app.
+  </p>
+
+  <p>
     Noily uses analytics events related to actions such as creating alarms,
-    completing challenges, creating Calendar Alarms, opening the Noily Pro
-    screen, and completing a Pro purchase.
+    completing challenges (including the challenge type), creating Calendar
+    Alarms, starting timers, viewing streaks or the calendar, switching tabs,
+    opening the Noily Pro screen, and completing a Pro purchase.
   </p>
 
   <p>
@@ -188,7 +259,7 @@ a {
     Analytics event data.
   </p>
 
-  <h2>6. Crash Reporting</h2>
+  <h2>8. Crash Reporting</h2>
 
   <p>
     Noily uses Firebase Crashlytics to identify and diagnose crashes and
@@ -210,7 +281,7 @@ a {
     reliability of Noily.
   </p>
 
-  <h2>7. Third-Party Services</h2>
+  <h2>9. Third-Party Services</h2>
 
   <p>
     Noily currently uses the following third-party services:
@@ -220,14 +291,22 @@ a {
     <li>Google Firebase Analytics — for application usage analytics.</li>
     <li>Firebase Crashlytics — for crash and error reporting.</li>
     <li>Google AdMob — for advertising on supported versions of Noily.</li>
+    <li>Google Play Billing and Apple App Store purchases — for Noily Pro.</li>
   </ul>
+
+  <p>
+    Learn more in
+    <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>
+    and
+    <a href="https://firebase.google.com/support/privacy">Firebase's privacy information</a>.
+  </p>
 
   <p>
     These services may process information according to their own privacy
     policies and terms.
   </p>
 
-  <h2>8. Purchases and Subscriptions</h2>
+  <h2>10. Purchases and Subscriptions</h2>
 
   <p>
     Noily offers paid features through Noily Pro. Purchases and subscriptions
@@ -241,7 +320,12 @@ a {
     platforms.
   </p>
 
-  <h2>9. Data Retention</h2>
+  <p>
+    You can manage or cancel subscriptions in your Google Play or Apple
+    account settings.
+  </p>
+
+  <h2>11. Data Retention</h2>
 
   <p>
     Information stored locally by Noily remains on your device according
@@ -254,7 +338,7 @@ a {
     service's data retention policies.
   </p>
 
-  <h2>10. Data Deletion and Privacy Choices</h2>
+  <h2>12. Data Deletion and Privacy Choices</h2>
 
   <p>
     You may remove locally stored Noily data by deleting the relevant
@@ -273,7 +357,7 @@ a {
     your device and Google settings.
   </p>
 
-  <h2>11. Children's Privacy</h2>
+  <h2>13. Children's Privacy</h2>
 
   <p>
     Noily does not knowingly collect personal information from children.
@@ -287,7 +371,7 @@ a {
     steps to address the situation.
   </p>
 
-  <h2>12. Security</h2>
+  <h2>14. Security</h2>
 
   <p>
     We take reasonable measures to protect information processed through
@@ -296,7 +380,7 @@ a {
     security.
   </p>
 
-  <h2>13. Links to Other Websites</h2>
+  <h2>15. Links to Other Websites</h2>
 
   <p>
     Noily may provide links to third-party websites or services.
@@ -304,7 +388,7 @@ a {
     We encourage you to review the privacy policies of those services.
   </p>
 
-  <h2>14. Changes to This Privacy Policy</h2>
+  <h2>16. Changes to This Privacy Policy</h2>
 
   <p>
     We may update this Privacy Policy from time to time to reflect changes
@@ -316,7 +400,7 @@ a {
     will be updated.
   </p>
 
-  <h2>15. Contact Us</h2>
+  <h2>17. Contact Us</h2>
 
   <p>
     If you have questions, concerns, or requests regarding this Privacy
